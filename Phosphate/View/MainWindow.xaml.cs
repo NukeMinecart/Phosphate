@@ -7,8 +7,11 @@ using System.Windows.Interop;
 using System.Windows.Media.Animation;
 using System.Drawing;
 using System.Net.Mime;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Image = System.Windows.Controls.Image;
+using ImageConverter = Phosphate.Converters.ImageConverter;
 
 namespace Phosphate.View;
 
@@ -21,7 +24,6 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         StateChanged += (_, _) => ChangeFullscreenButton();
-        AddLaunch();
     }
 
     private void FadeWindowAnimation(float startValue, float endValue, Duration time, EventHandler endAction)
@@ -77,11 +79,22 @@ public partial class MainWindow : Window
          // }
     }
 
-    private void AddLaunch()
+    private void AddLaunch(object sender, RoutedEventArgs e)
     {
-        var exe = @"C:\Users\bradl\OneDrive\Desktop\Stuff\mmc-stable-win32\MultiMC\MultiMC.exe";
-        var button = new Button();
-        button.Content = System.Drawing.Icon.ExtractAssociatedIcon(exe);
+        const string exe = @"C:\Users\bradl\OneDrive\Desktop\Stuff\mmc-stable-win32\MultiMC\MultiMC.exe";
+        
+        var image = new Image();
+        var icon = System.Drawing.Icon.ExtractAssociatedIcon(exe);
+
+        if (icon != null) image.Source = ImageConverter.ToImageSource(icon);
+
+        image.Stretch = Stretch.None;
+        var button = new Button
+        {
+            Content = "MultiMC"
+        };
+        button.Click += (_, _) => Process.Start(exe); 
+        LaunchPanel.Children.Add(image);
         LaunchPanel.Children.Add(button);
     }
 
