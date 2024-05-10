@@ -1,0 +1,22 @@
+﻿<Application x:Class="Phosphate.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Theme/Dark.xaml" />
+                
+                <ResourceDictionary Source="/Theme/Control/Button.xaml" />
+                <ResourceDictionary Source="/Theme/Control/CheckBox.xaml" />
+                <ResourceDictionary Source="/Theme/Control/RadioButton.xaml" />
+                <ResourceDictionary Source="/Theme/Control/TextBox.xaml" />
+                <ResourceDictionary Source="/Theme/Control/ComboBox.xaml" />
+                <ResourceDictionary Source="/Theme/Control/ListBox.xaml" />
+                <ResourceDictionary Source="/Theme/Control/ListView.xaml" />
+                <ResourceDictionary Source="/Theme/Control/ListViewItem.xaml" />
+                <ResourceDictionary Source="/Theme/Control/ScrollViewer.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

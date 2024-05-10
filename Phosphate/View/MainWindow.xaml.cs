@@ -1,0 +1,177 @@
+﻿using System.Diagnostics;
+using System.IO;
+using System.Runtime.InteropServices;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Interop;
+using System.Windows.Media.Animation;
+using System.Drawing;
+using System.Net.Mime;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+
+namespace Phosphate.View;
+
+/// <summary>
+/// Interaction logic for MainWindow.xaml
+/// </summary>
+public partial class MainWindow : Window
+{
+    public MainWindow()
+    {
+        InitializeComponent();
+        StateChanged += (_, _) => ChangeFullscreenButton();
+        AddLaunch();
+    }
+
+    private void FadeWindowAnimation(float startValue, float endValue, Duration time, EventHandler endAction)
+    {
+        var animation = new DoubleAnimation(startValue, endValue, time);
+        animation.Completed += endAction;
+        BeginAnimation(OpacityProperty, animation);
+    }
+
+    private void FadeWindowAnimation(float startValue, float endValue, Duration time)
+    {
+        FadeWindowAnimation(startValue, endValue, time, (_, _) => { });
+    }
+
+    private void OnMinimizeButtonClick(object sender, RoutedEventArgs e)
+    {
+        WindowState = WindowState.Minimized;
+    }
+
+    private void OnMaximizeRestoreButtonClick(object sender, RoutedEventArgs e)
+    {
+        FadeWindowAnimation(0, 1, TimeSpan.FromSeconds(0.15));
+        WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
+        ChangeFullscreenButton();
+    }
+
+    private void ChangeFullscreenButton()
+    {
+        if (WindowState == WindowState.Maximized)
+        {
+            FullscreenButton.Visibility = Visibility.Hidden;
+            UnFullscreenButton.Visibility = Visibility.Visible;
+        }
+        else
+        {
+            FullscreenButton.Visibility = Visibility.Visible;
+            UnFullscreenButton.Visibility = Visibility.Hidden;
+        }
+    }
+
+    private void TestLaunchApp(object sender, RoutedEventArgs e)
+    {
+        // Find all .exe files on the hard drive
+         // var filePaths = Directory.EnumerateFiles(@"C:\", "*.exe", new EnumerationOptions
+         // {
+         //     IgnoreInaccessible = true,
+         //     RecurseSubdirectories = true,
+         // });
+         //
+         // foreach (var exe in filePaths)
+         // {
+         //     Console.WriteLine(exe);
+         // }
+    }
+
+    private void AddLaunch()
+    {
+        var exe = @"C:\Users\bradl\OneDrive\Desktop\Stuff\mmc-stable-win32\MultiMC\MultiMC.exe";
+        var button = new Button();
+        button.Content = System.Drawing.Icon.ExtractAssociatedIcon(exe);
+        LaunchPanel.Children.Add(button);
+    }
+
+    private void OnCloseButtonClick(object sender, RoutedEventArgs e)
+    {
+        FadeWindowAnimation(1, 0, TimeSpan.FromSeconds(0.05), (_, _) => Close());
+    }
+
+    protected override void OnSourceInitialized(EventArgs e)
+    {
+        base.OnSourceInitialized(e);
+        ((HwndSource)PresentationSource.FromVisual(this)!).AddHook(HookProc);
+    }
+
+    private static IntPtr HookProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+    {
+        if (msg == WmGetMinMaxInfo)
+        {
+            // We need to tell the system what our size should be when maximized. Otherwise it will cover the whole screen,
+            // including the task bar.
+            var mmi = (MinMaxInfo)Marshal.PtrToStructure(lParam, typeof(MinMaxInfo))!;
+
+            // Adjust the maximized size and position to fit the work area of the correct monitor
+            var monitor = MonitorFromWindow(hwnd, MonitorDefaultToNearest);
+
+            if (monitor != IntPtr.Zero)
+            {
+                var monitorInfo = new MonitorInfo
+                {
+                    cbSize = Marshal.SizeOf(typeof(MonitorInfo))
+                };
+                GetMonitorInfo(monitor, ref monitorInfo);
+                var rcWorkArea = monitorInfo.rcWork;
+                var rcMonitorArea = monitorInfo.rcMonitor;
+                mmi.ptMaxPosition.X = Math.Abs(rcWorkArea.Left - rcMonitorArea.Left);
+                mmi.ptMaxPosition.Y = Math.Abs(rcWorkArea.Top - rcMonitorArea.Top);
+                mmi.ptMaxSize.X = Math.Abs(rcWorkArea.Right - rcWorkArea.Left);
+                mmi.ptMaxSize.Y = Math.Abs(rcWorkArea.Bottom - rcWorkArea.Top);
+            }
+
+            Marshal.StructureToPtr(mmi, lParam, true);
+        }
+
+        return IntPtr.Zero;
+    }
+
+    private const int WmGetMinMaxInfo = 0x0024;
+
+    private const uint MonitorDefaultToNearest = 0x00000002;
+
+    [DllImport("user32.dll")]
+    private static extern IntPtr MonitorFromWindow(IntPtr handle, uint flags);
+
+    [DllImport("user32.dll")]
+    private static extern bool GetMonitorInfo(IntPtr hMonitor, ref MonitorInfo lpmi);
+
+    [Serializable]
+    [StructLayout(LayoutKind.Sequential)]
+    public struct Rect(int left, int top, int right, int bottom)
+    {
+        public int Left = left;
+        public int Top = top;
+        public int Right = right;
+        public int Bottom = bottom;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    public struct MonitorInfo
+    {
+        public int cbSize;
+        public Rect rcMonitor;
+        public Rect rcWork;
+        public uint dwFlags;
+    }
+
+    [Serializable]
+    [StructLayout(LayoutKind.Sequential)]
+    public struct Point(int x, int y)
+    {
+        public int X = x;
+        public int Y = y;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    public struct MinMaxInfo
+    {
+        public Point ptReserved;
+        public Point ptMaxSize;
+        public Point ptMaxPosition;
+        public Point ptMinTrackSize;
+        public Point ptMaxTrackSize;
+    }
+}
