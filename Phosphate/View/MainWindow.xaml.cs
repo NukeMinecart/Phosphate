@@ -1,15 +1,11 @@
-﻿using System.Diagnostics;
-using System.IO;
+﻿using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interop;
 using System.Windows.Media.Animation;
-using System.Drawing;
-using System.Net.Mime;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
+using Phosphate.Launcher;
 using Image = System.Windows.Controls.Image;
 using ImageConverter = Phosphate.Converters.ImageConverter;
 
@@ -24,6 +20,8 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         StateChanged += (_, _) => ChangeFullscreenButton();
+        // ExecutableScanner.SearchForExe(new FileInfo("C:\\"));
+        AddLaunch(new FileInfo(@"C:\Users\bradl\OneDrive\Desktop\Stuff\mmc-stable-win32\MultiMC\MultiMC.exe"), "Minecraft");
     }
 
     private void FadeWindowAnimation(float startValue, float endValue, Duration time, EventHandler endAction)
@@ -63,40 +61,56 @@ public partial class MainWindow : Window
             UnFullscreenButton.Visibility = Visibility.Hidden;
         }
     }
-
-    private void TestLaunchApp(object sender, RoutedEventArgs e)
+    
+    private void AddLaunch(FileInfo file, string name)
     {
-        // Find all .exe files on the hard drive
-         // var filePaths = Directory.EnumerateFiles(@"C:\", "*.exe", new EnumerationOptions
-         // {
-         //     IgnoreInaccessible = true,
-         //     RecurseSubdirectories = true,
-         // });
-         //
-         // foreach (var exe in filePaths)
-         // {
-         //     Console.WriteLine(exe);
-         // }
-    }
+        var image = new Image
+        {
+            Stretch = Stretch.Uniform,
+            MaxWidth = 100,
+            MaxHeight = 100
+        };
+        var icon = System.Drawing.Icon.ExtractAssociatedIcon(file.FullName);
 
-    private void AddLaunch(object sender, RoutedEventArgs e)
-    {
-        const string exe = @"C:\Users\bradl\OneDrive\Desktop\Stuff\mmc-stable-win32\MultiMC\MultiMC.exe";
+        image.MouseDown += (_, _) => AppLauncher.LaunchExe(file);
+
+        if (icon != null)
+            image.Source = ImageConverter.ToImageSource(icon);
         
-        var image = new Image();
-        var icon = System.Drawing.Icon.ExtractAssociatedIcon(exe);
-
-        if (icon != null) image.Source = ImageConverter.ToImageSource(icon);
-
-        image.Stretch = Stretch.None;
+        Grid.SetRow(image, 0);
+        Grid.SetColumn(image, 0);
+        
         var button = new Button
         {
-            Content = "MultiMC"
+            Content = name,
         };
-        button.Click += (_, _) => Process.Start(exe); 
-        LaunchPanel.Children.Add(image);
-        LaunchPanel.Children.Add(button);
+        
+        button.Click += (_, _) => AppLauncher.LaunchExe(file);
+        Grid.SetRow(button, 2);
+        Grid.SetColumn(button, 0);
+        
+        var grid = new Grid
+        {
+            Children = { image, button },
+        };
+
+        var column1 = new ColumnDefinition();
+        var column2 = new ColumnDefinition();
+
+        var row1 = new RowDefinition();
+        var row2 = new RowDefinition();
+        var row3 = new RowDefinition();
+        
+        grid.ColumnDefinitions.Add(column1);
+        grid.ColumnDefinitions.Add(column2);
+
+        grid.RowDefinitions.Add(row1);
+        grid.RowDefinitions.Add(row2);
+        grid.RowDefinitions.Add(row3);
+
+        LaunchPanel.Children.Add(grid);
     }
+    
 
     private void OnCloseButtonClick(object sender, RoutedEventArgs e)
     {

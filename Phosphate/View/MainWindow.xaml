@@ -114,8 +114,8 @@
         
         <ScrollViewer Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Auto">
             <WrapPanel Name="LaunchPanel">
-                <Button Click="AddLaunch">Test</Button>
             </WrapPanel>
         </ScrollViewer>
     </Grid>
+    
 </Window>

@@ -5,17 +5,17 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Theme/Dark.xaml" />
+                <ResourceDictionary Source="/View/Resources/Theme/Dark.xaml" />
                 
-                <ResourceDictionary Source="/Theme/Control/Button.xaml" />
-                <ResourceDictionary Source="/Theme/Control/CheckBox.xaml" />
-                <ResourceDictionary Source="/Theme/Control/RadioButton.xaml" />
-                <ResourceDictionary Source="/Theme/Control/TextBox.xaml" />
-                <ResourceDictionary Source="/Theme/Control/ComboBox.xaml" />
-                <ResourceDictionary Source="/Theme/Control/ListBox.xaml" />
-                <ResourceDictionary Source="/Theme/Control/ListView.xaml" />
-                <ResourceDictionary Source="/Theme/Control/ListViewItem.xaml" />
-                <ResourceDictionary Source="/Theme/Control/ScrollViewer.xaml" />
+                <ResourceDictionary Source="/View/Resources/Theme/Control/Button.xaml" />
+                <ResourceDictionary Source="/View/Resources/Theme/Control/CheckBox.xaml" />
+                <ResourceDictionary Source="/View/Resources/Theme/Control/RadioButton.xaml" />
+                <ResourceDictionary Source="/View/Resources/Theme/Control/TextBox.xaml" />
+                <ResourceDictionary Source="/View/Resources/Theme/Control/ComboBox.xaml" />
+                <ResourceDictionary Source="/View/Resources/Theme/Control/ListBox.xaml" />
+                <ResourceDictionary Source="/View/Resources/Theme/Control/ListView.xaml" />
+                <ResourceDictionary Source="/View/Resources/Theme/Control/ListViewItem.xaml" />
+                <ResourceDictionary Source="/View/Resources/Theme/Control/ScrollViewer.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

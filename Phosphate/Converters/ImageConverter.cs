@@ -3,11 +3,11 @@ using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using Image = System.Windows.Controls.Image;
+using Size = System.Drawing.Size;
 
 namespace Phosphate.Converters;
 
-public class ImageConverter
+public static class ImageConverter
 {
     public static ImageSource ToImageSource(Icon? icon)
     {
@@ -17,7 +17,7 @@ public class ImageConverter
                 icon.Handle,
                 Int32Rect.Empty,
                 BitmapSizeOptions.FromEmptyOptions());
-
+            
             return imageSource;
         }
 

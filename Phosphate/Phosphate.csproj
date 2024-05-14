@@ -19,6 +19,66 @@
         <XamlRuntime>Wpf</XamlRuntime>
         <SubType>Designer</SubType>
       </Page>
+      <Page Update="View\Theme\Control\Button.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="View\Theme\Control\CheckBox.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="View\Theme\Control\ComboBox.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="View\Theme\Control\ListBox.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="View\Theme\Control\ListView.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="View\Theme\Control\ListViewItem.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="View\Theme\Control\RadioButton.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="View\Theme\Control\ScrollViewer.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="View\Theme\Control\TextBox.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="View\Theme\Dark.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="View\Resources\Theme\Control\Button.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="View\Resources\Theme\Control\CheckBox.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="View\Resources\Theme\Control\ComboBox.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="View\Resources\Theme\Control\ListBox.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="View\Resources\Theme\Control\ListView.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="View\Resources\Theme\Control\ListViewItem.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="View\Resources\Theme\Control\RadioButton.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="View\Resources\Theme\Control\ScrollViewer.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="View\Resources\Theme\Control\TextBox.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
+      <Page Update="View\Resources\Theme\Dark.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </Page>
     </ItemGroup>
 
     <ItemGroup>
