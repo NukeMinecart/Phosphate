@@ -79,6 +79,16 @@
       <Page Update="View\Resources\Theme\Dark.xaml">
         <Generator>MSBuild:Compile</Generator>
       </Page>
+      <Page Update="View\Pages\MainPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+      <Page Update="View\Pages\SettingsPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
     </ItemGroup>
 
     <ItemGroup>
@@ -90,13 +100,21 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="View\Resources\" />
-    </ItemGroup>
-
-    <ItemGroup>
+      <Reference Include="PresentationFramework">
+        <HintPath>..\..\..\..\..\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\8.0.0\PresentationFramework.dll</HintPath>
+      </Reference>
       <Reference Include="System.Drawing.Common">
         <HintPath>..\..\..\..\..\Program Files\JetBrains\JetBrains Rider 2024.1.1\lib\ReSharperHost\NetCore\System.Drawing.Common.dll</HintPath>
       </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="FluentWPF" Version="0.10.2" />
+      <PackageReference Include="WPF-UI" Version="3.0.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="View\Resources\" />
     </ItemGroup>
 
 </Project>
