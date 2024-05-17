@@ -24,6 +24,7 @@ public partial class MainWindow : FluentWindow
         InitializeComponent();
         CacheLoader.LoadValuesIntoCache();
         UpdateSettings.Update();
+        //Start on the main page
         // ExecutableScanner.SearchForExe(new FileInfo("C:\\"));
         // AddLaunch(new FileInfo(@"C:\Users\bradl\OneDrive\Desktop\Stuff\mmc-stable-win32\MultiMC\MultiMC.exe"), "Minecraft");
     }

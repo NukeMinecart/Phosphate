@@ -109,7 +109,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="FluentWPF" Version="0.10.2" />
       <PackageReference Include="WPF-UI" Version="3.0.4" />
     </ItemGroup>
 
