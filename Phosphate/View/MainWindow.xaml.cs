@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
+using Phosphate.Cache;
 using Phosphate.Launcher;
 using Wpf.Ui.Controls;
 using Button = Wpf.Ui.Controls.Button;
@@ -21,7 +22,8 @@ public partial class MainWindow : FluentWindow
     public MainWindow()
     {
         InitializeComponent();
-        
+        CacheObjects.InitializeTOREMOVE();
+        CacheLoader.SaveValuesToCache();
         // ExecutableScanner.SearchForExe(new FileInfo("C:\\"));
         // AddLaunch(new FileInfo(@"C:\Users\bradl\OneDrive\Desktop\Stuff\mmc-stable-win32\MultiMC\MultiMC.exe"), "Minecraft");
     }

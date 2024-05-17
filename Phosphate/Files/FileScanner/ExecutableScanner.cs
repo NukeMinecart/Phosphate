@@ -1,7 +1,7 @@
 using System.IO;
 using Phosphate.Launcher;
 
-namespace Phosphate.FileScanner;
+namespace Phosphate.Files.FileScanner;
 
 public static class ExecutableScanner
 {

@@ -22,15 +22,18 @@
                 <Grid.RowDefinitions>
                     <RowDefinition MaxHeight="32"/>
                     <RowDefinition MaxHeight="32"/>
-
+                    <RowDefinition MaxHeight="32"/>
                 </Grid.RowDefinitions>
+                
                 <Label>
                     <Label.Content>
-                        This is a setting group
+                        Theme
                     </Label.Content>
                     <Label.FontSize>20</Label.FontSize> 
                 </Label>
-                <ui:ToggleSwitch Grid.Row="1">This is a setting</ui:ToggleSwitch>
+                <ui:ToggleSwitch Name="ThemeSwitch" Grid.Row="1" OnContent="Dark" OffContent="Light" Click="ChangeTheme"></ui:ToggleSwitch>
+                <ui:ToggleSwitch Name="ContrastSwitch" Grid.Row="2" Click="ChangeHighContrast">High Contrast</ui:ToggleSwitch>
+
             </Grid>
             <Grid Grid.Column="1">
                 
