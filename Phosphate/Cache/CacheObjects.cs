@@ -1,15 +1,12 @@
+using System.Text.Json;
+
 namespace Phosphate.Cache;
 
 public static class CacheObjects
 {
-    public static readonly Cache SettingsCache = new ();
+    public static Cache SettingsCache = new ();
 
-    public static void InitializeTOREMOVE()
-    {
-        //TODO Remove this method and implement a file based solution
-        SettingsCache.AddValue(CacheKeys.DarkTheme, true);
-        SettingsCache.AddValue(CacheKeys.HighContrast, false);
-    }
+    public static readonly Func<object, bool> BooleanConverter = value => bool.Parse(value.ToString()!);
     
     public class Cache : Dictionary<string, object>
     {
@@ -20,12 +17,30 @@ public static class CacheObjects
         
         public TK GetValue<TK>(string key, TK defaultValue)
         {
-            if (this[key].GetType() != typeof(TK) || !ContainsKey(key))
+            if (!ContainsKey(key))
             {
-                Console.WriteLine("Type is incorrect or key is not found");
+                Console.WriteLine("Key missing from cache");
                 return defaultValue;
             }
+
+            if (this[key].GetType() != typeof(TK))
+            {
+                Console.WriteLine("Type doesn't match cache type");
+                return defaultValue;
+            }
+
             return (TK)this[key];
+        }
+        
+        public TK GetValue<TK>(string key, TK defaultValue, Func<object, TK> converter)
+        {
+            if (!ContainsKey(key))
+            {
+                Console.WriteLine("Key missing from cache");
+                return defaultValue;
+            }
+
+            return converter.Invoke(this[key]);
         }
     }
 

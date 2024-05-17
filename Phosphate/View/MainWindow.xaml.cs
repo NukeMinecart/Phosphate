@@ -22,8 +22,8 @@ public partial class MainWindow : FluentWindow
     public MainWindow()
     {
         InitializeComponent();
-        CacheObjects.InitializeTOREMOVE();
-        CacheLoader.SaveValuesToCache();
+        CacheLoader.LoadValuesIntoCache();
+        UpdateSettings.Update();
         // ExecutableScanner.SearchForExe(new FileInfo("C:\\"));
         // AddLaunch(new FileInfo(@"C:\Users\bradl\OneDrive\Desktop\Stuff\mmc-stable-win32\MultiMC\MultiMC.exe"), "Minecraft");
     }
@@ -33,7 +33,13 @@ public partial class MainWindow : FluentWindow
         if (e.ChangedButton == MouseButton.Left)
             DragMove();
     }
-    
+
+    protected override void OnClosed(EventArgs e)
+    {
+        CacheLoader.SaveValuesFromCache();
+        base.OnClosed(e);
+    }
+
     private void AddLaunch(FileInfo file, string name)
     {
         var image = new Image
