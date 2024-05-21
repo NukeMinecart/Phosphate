@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Phosphate.Cache;
 
 namespace Phosphate.View;
 
@@ -7,4 +8,9 @@ namespace Phosphate.View;
 /// </summary>
 public partial class App : Application
 {
+    protected override void OnExit(ExitEventArgs e)
+    {
+        CacheLoader.SaveValuesFromCache();
+        base.OnExit(e);
+    }
 }

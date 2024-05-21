@@ -7,6 +7,20 @@
       mc:Ignorable="d"
       Title="MainPage">
     <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-        <Button> Test</Button>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MaxWidth="8"/>
+            <ColumnDefinition />
+            <ColumnDefinition MaxWidth="8"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="8" MaxHeight="8"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <ui:DynamicScrollViewer Grid.Row="1" Grid.Column="1">
+            <WrapPanel Name="LaunchPanel">
+                
+            </WrapPanel>
+        </ui:DynamicScrollViewer>
     </Grid>
 </Page>

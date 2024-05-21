@@ -7,6 +7,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using Phosphate.Cache;
 using Phosphate.Launcher;
+using Phosphate.View.Pages;
 using Wpf.Ui.Controls;
 using Button = Wpf.Ui.Controls.Button;
 using Image = Wpf.Ui.Controls.Image;
@@ -34,68 +35,12 @@ public partial class MainWindow : FluentWindow
         if (e.ChangedButton == MouseButton.Left)
             DragMove();
     }
-
-    protected override void OnClosed(EventArgs e)
-    {
-        CacheLoader.SaveValuesFromCache();
-        base.OnClosed(e);
-    }
-
-    private void AddLaunch(FileInfo file, string name)
-    {
-        var image = new Image
-        {
-            Stretch = Stretch.Uniform,
-            MaxWidth = 100,
-            MaxHeight = 100
-        };
-        
-        var icon = System.Drawing.Icon.ExtractAssociatedIcon(file.FullName);
-    
-        image.MouseDown += (_, _) => AppLauncher.LaunchExe(file);
-    
-        if (icon != null)
-            image.Source = ImageConverter.ToImageSource(icon);
-        
-        Grid.SetRow(image, 0);
-        Grid.SetColumn(image, 0);
-        
-        var button = new Button
-        {
-            Content = name,
-        };
-        
-        button.Click += (_, _) => AppLauncher.LaunchExe(file);
-        button.HorizontalAlignment = HorizontalAlignment.Center;
-        Grid.SetRow(button, 2);
-        Grid.SetColumn(button, 0);
-        
-        var grid = new Grid
-        {
-            Children = { image, button },
-        };
-    
-        var column1 = new ColumnDefinition();
-        var column2 = new ColumnDefinition();
-    
-        var row1 = new RowDefinition();
-        var row2 = new RowDefinition();
-        var row3 = new RowDefinition();
-        
-        grid.ColumnDefinitions.Add(column1);
-        grid.ColumnDefinitions.Add(column2);
-    
-        grid.RowDefinitions.Add(row1);
-        grid.RowDefinitions.Add(row2);
-        grid.RowDefinitions.Add(row3);
-    
-        // LaunchPanel.Children.Add(grid);
-    }
     
     protected override void OnSourceInitialized(EventArgs e)
     {
         base.OnSourceInitialized(e);
         ((HwndSource)PresentationSource.FromVisual(this)!).AddHook(HookProc);
+        NavView.Navigate(typeof(MainPage));
     }
     
     private static IntPtr HookProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)

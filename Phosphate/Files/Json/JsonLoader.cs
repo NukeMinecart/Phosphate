@@ -4,7 +4,7 @@ using Phosphate.Cache;
 
 namespace Phosphate.Files.Json;
 
-public class JsonLoader
+public static class JsonLoader
 {
     public static T LoadValuesFromJson<T>(FileInfo path)
     {
