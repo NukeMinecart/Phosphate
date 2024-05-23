@@ -52,6 +52,11 @@
             </ui:NavigationView.MenuItems>
             
             <ui:NavigationView.FooterMenuItems>
+                <ui:NavigationViewItem Content="Add" TargetPageType="{x:Type pages:AddPage}" NavigationCacheMode="Enabled">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="Add24" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
                 <ui:NavigationViewItem Content="Edit" TargetPageType="{x:Type pages:EditPage}" NavigationCacheMode="Enabled">
                     <ui:NavigationViewItem.Icon>
                         <ui:SymbolIcon Symbol="Edit24" />

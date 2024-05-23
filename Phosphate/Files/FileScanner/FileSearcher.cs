@@ -5,15 +5,10 @@ namespace Phosphate.Files.FileScanner;
 
 public static class FileSearcher
 {
-    public static void SearchForExe(FileInfo startingDirectory)
+    public static IEnumerable<FileInfo> SearchForExe(FileInfo startingDirectory)
     {
         // Find all .exe files on the hard drive
-        var filePaths = SearchForFiles(startingDirectory, "exe").Where(AppLauncher.IsExecutableFile);
-        
-        foreach (var exe in filePaths)
-        {
-            Console.WriteLine(exe);
-        }
+        return SearchForFiles(startingDirectory, "exe").Where(AppLauncher.IsExecutableFile);
     }
 
     public static IEnumerable<FileInfo> SearchForFiles(FileInfo startingDirectory, string fileExtension)
