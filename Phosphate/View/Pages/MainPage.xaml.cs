@@ -14,10 +14,6 @@ public partial class MainPage : Page
     public MainPage()
     {
         InitializeComponent();
-        for (var i = 0; i < 30; i++)
-        {
-            AddLaunch(new FileInfo(@"C:\Users\bradl\OneDrive\Desktop\Stuff\mmc-stable-win32\MultiMC\MultiMC.exe"), "MultiMC");
-        }
     }
     
     private void AddLaunch(FileInfo file, string name)

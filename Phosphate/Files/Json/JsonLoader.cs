@@ -11,12 +11,22 @@ public static class JsonLoader
         var fileStream = new FileStream(path.FullName, FileMode.Open);
         return JsonSerializer.Deserialize<T>(fileStream) ??
                                      throw new NullReferenceException("Json deserialization is null");
-    
     }
 
     public static void SaveValuesToJson<T>(FileInfo path, T value)
     {
         var jsonString = JsonSerializer.Serialize(value);
         File.WriteAllText(path.FullName, jsonString);
+    }
+
+    public static bool CreateFile(FileInfo path)
+    {
+        if (!path.Exists)
+        {
+            path.Create();
+            return true;
+        }
+
+        return false;
     }
 }
