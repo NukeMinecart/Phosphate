@@ -1,11 +1,14 @@
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Phosphate.Converters;
+using Phosphate.Files.Json;
 using Phosphate.Launcher;
-
+using Phosphate.Launcher.Launch;
 using Image = Wpf.Ui.Controls.Image;
+using Size = System.Drawing.Size;
 
 namespace Phosphate.View.Pages;
 
@@ -14,35 +17,41 @@ public partial class MainPage : Page
     public MainPage()
     {
         InitializeComponent();
+        var exeItem =
+            new ExecutableItem(
+                new FileInfo(@"C:\Users\bradl\OneDrive\Desktop\Stuff\mmc-stable-win32\MultiMC\MultiMC.exe"), "MultiMC",
+                new Size(100, 100)); 
+        AddLaunch(exeItem);
+        
+        JsonLoader.SaveValuesToJson(new FileInfo(Path.Combine(Config.ItemDirectory.FullName, exeItem.Name + ".json")), exeItem);
+
+        AddLaunch(JsonLoader.LoadValuesFromJson<ExecutableItem>(new FileInfo(Path.Combine(Config.ItemDirectory.FullName,
+            exeItem.Name + ".json"))));
     }
     
-    private void AddLaunch(FileInfo file, string name)
+    private void AddLaunch(ExecutableItem item)
     {
         var image = new Image
         {
             Stretch = Stretch.Uniform,
-            MaxWidth = 100,
-            MaxHeight = 100
+            MaxWidth = item.Size.Width,
+            MaxHeight = item.Size.Height
         };
         
-        var icon = System.Drawing.Icon.ExtractAssociatedIcon(file.FullName);
-    
-        image.MouseDown += (_, _) => AppLauncher.LaunchExe(file);
-    
-        if (icon != null)
-            image.Source = ImageConverter.ToImageSource(icon);
+        image.MouseDown += (_, _) => item.Execute();
+        image.Source = ImageConverter.ToImageSource(item.GetIcon());
         
-        Grid.SetRow(image, 0);
+        Grid.SetRow(image, 1);
         Grid.SetColumn(image, 1);
         
         var button = new Button
         {
-            Content = name,
+            Content = item.Name,
             HorizontalAlignment = HorizontalAlignment.Center
         };
         
-        button.Click += (_, _) => AppLauncher.LaunchExe(file);
-        Grid.SetRow(button, 1);
+        button.Click += (_, _) => item.Execute();
+        Grid.SetRow(button, 2);
         Grid.SetColumn(button, 1);
         
         var grid = new Grid
@@ -64,6 +73,11 @@ public partial class MainPage : Page
             MaxWidth = 8
         };
         
+        var row0 = new RowDefinition
+        {
+            MinHeight = 8,
+            MaxHeight = 8
+        };
         var row1 = new RowDefinition();
         var row2 = new RowDefinition();
         var row3 = new RowDefinition
@@ -76,6 +90,7 @@ public partial class MainPage : Page
         grid.ColumnDefinitions.Add(column2);
         grid.ColumnDefinitions.Add(column3);
     
+        grid.RowDefinitions.Add(row0);
         grid.RowDefinitions.Add(row1);
         grid.RowDefinitions.Add(row2);
         grid.RowDefinitions.Add(row3);

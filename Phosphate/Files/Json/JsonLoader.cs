@@ -6,10 +6,15 @@ namespace Phosphate.Files.Json;
 
 public static class JsonLoader
 {
+    private static JsonSerializerOptions _serializerOptions = new JsonSerializerOptions
+    {
+        IncludeFields = true
+    };
+
     public static T LoadValuesFromJson<T>(FileInfo path)
     {
         var fileStream = new FileStream(path.FullName, FileMode.Open);
-        return JsonSerializer.Deserialize<T>(fileStream) ??
+        return JsonSerializer.Deserialize<T>(fileStream, _serializerOptions) ??
                                      throw new NullReferenceException("Json deserialization is null");
     }
 
