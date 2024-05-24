@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.ComponentModel;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -6,6 +7,8 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using Phosphate.Cache;
+using Phosphate.Event;
+using Phosphate.Files.FileScanner;
 using Phosphate.Launcher;
 using Phosphate.View.Pages;
 using Wpf.Ui.Controls;
@@ -25,6 +28,11 @@ public partial class MainWindow : FluentWindow
         InitializeComponent();
         CacheLoader.LoadValuesIntoCache();
         UpdateSettings.Update();
+        var fileSearchThread = new Thread(() =>
+        {
+            CacheObjects.ExecutableItemCache.Value = FileSearcher.SearchForExe(new FileInfo(@"C:/")).ToList();
+        });
+        fileSearchThread.Start();
     }
     
     private void Window_MouseDown(object sender, MouseButtonEventArgs e)

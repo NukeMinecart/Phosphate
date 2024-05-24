@@ -1,4 +1,6 @@
+using System.IO;
 using System.Text.Json;
+using Phosphate.Event;
 
 namespace Phosphate.Cache;
 
@@ -6,6 +8,8 @@ public static class CacheObjects
 {
     public static Cache SettingsCache { get; set; } = new();
     public static Cache LaunchItemCache { get; } = new();
+
+    public static Property<List<FileInfo>> ExecutableItemCache { get; } = new();
 
     public static readonly Func<object, bool> BooleanConverter = value => bool.Parse(value.ToString()!);
     

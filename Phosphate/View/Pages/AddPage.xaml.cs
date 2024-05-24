@@ -1,5 +1,8 @@
+using System.ComponentModel;
 using System.IO;
+using System.Windows;
 using System.Windows.Controls;
+using Phosphate.Cache;
 using Phosphate.Files.FileScanner;
 using Wpf.Ui.Controls;
 
@@ -10,12 +13,20 @@ public partial class AddPage : Page
     public AddPage()
     {
         InitializeComponent();
-        //TODO implement in a new thread
-        AutoSuggestBox.OriginalItemsSource = new List<string>(FileSearcher.SearchForExe(new FileInfo("C:/")).Select(file => file.FullName));
+        
+        if (CacheObjects.ExecutableItemCache.Value != null)
+            AddSearchItems();
+        
+        else
+            CacheObjects.ExecutableItemCache.PropertyChanged += (_, _) => Application.Current.Dispatcher.Invoke(AddSearchItems);
     }
 
-    private void UpdateSelections(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+
+    private void AddSearchItems()
     {
-        
+        AutoSuggestBox.OriginalItemsSource =
+            CacheObjects.ExecutableItemCache.Value!.Select(file => file.FullName).ToList();
+        AutoSuggestBox.Focus();
+        AutoSuggestBox.IsSuggestionListOpen = true;
     }
 }

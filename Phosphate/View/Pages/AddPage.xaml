@@ -3,7 +3,6 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="clr-namespace:Phosphate.View.Pages"
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       mc:Ignorable="d"
       Title="AddPage">
@@ -18,7 +17,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         
-        <ui:AutoSuggestBox Grid.Column="1" Grid.Row="1" x:Name="AutoSuggestBox" PlaceholderText="Search" TextChanged="UpdateSelections" VerticalAlignment="Top">
+        <ui:AutoSuggestBox Grid.Column="1" Grid.Row="1" x:Name="AutoSuggestBox" PlaceholderText="Search" VerticalAlignment="Top">
             <ui:AutoSuggestBox.Icon>
                 <ui:IconSourceElement>
                     <ui:SymbolIconSource Symbol="Search24" />
