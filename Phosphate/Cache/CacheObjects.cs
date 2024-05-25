@@ -12,6 +12,7 @@ public static class CacheObjects
     public static Property<List<FileInfo>> ExecutableItemCache { get; } = new();
 
     public static readonly Func<object, bool> BooleanConverter = value => bool.Parse(value.ToString()!);
+    public static readonly Func<object, string> StringConverter = value => value.ToString()!;
     
     public class Cache : Dictionary<string, object>
     {

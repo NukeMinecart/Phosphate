@@ -26,7 +26,5 @@ public partial class AddPage : Page
     {
         AutoSuggestBox.OriginalItemsSource =
             CacheObjects.ExecutableItemCache.Value!.Select(file => file.FullName).ToList();
-        AutoSuggestBox.Focus();
-        AutoSuggestBox.IsSuggestionListOpen = true;
     }
 }

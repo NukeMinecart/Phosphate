@@ -15,6 +15,7 @@ using Wpf.Ui.Controls;
 using Button = Wpf.Ui.Controls.Button;
 using Image = Wpf.Ui.Controls.Image;
 using ImageConverter = Phosphate.Converters.ImageConverter;
+using MessageBox = Wpf.Ui.Controls.MessageBox;
 
 namespace Phosphate.View;
 
@@ -27,12 +28,7 @@ public partial class MainWindow : FluentWindow
     {
         InitializeComponent();
         CacheLoader.LoadValuesIntoCache();
-        UpdateSettings.Update();
-        var fileSearchThread = new Thread(() =>
-        {
-            CacheObjects.ExecutableItemCache.Value = FileSearcher.SearchForExe(new FileInfo(@"C:/")).ToList();
-        });
-        fileSearchThread.Start();
+        UpdateSettings.Start();
     }
     
     private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -40,7 +36,7 @@ public partial class MainWindow : FluentWindow
         if (e.ChangedButton == MouseButton.Left)
             DragMove();
     }
-    
+
     protected override void OnSourceInitialized(EventArgs e)
     {
         base.OnSourceInitialized(e);
