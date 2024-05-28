@@ -2,6 +2,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+
 using Phosphate.Cache;
 using TextBox = Wpf.Ui.Controls.TextBox;
 
@@ -25,7 +26,6 @@ public partial class SettingsPage : Page
     {
         CacheObjects.SettingsCache.AddValue(SettingKeys.HighContrast, ContrastSwitch.IsChecked!.Value);
         UpdateSettings.Update();
-
     }
 
     private void ChangeTheme(object sender, RoutedEventArgs e)
@@ -37,6 +37,7 @@ public partial class SettingsPage : Page
     private void ChangeScanOnReload(object sender, RoutedEventArgs e)
     {
         CacheObjects.SettingsCache.AddValue(SettingKeys.RescanOnReload, ScanSwitch.IsChecked!.Value);
+        CacheLoader.SaveSettingValuesFromCache();
     }
 
     private void ValidateFilePath(object sender, TextChangedEventArgs e)
@@ -47,6 +48,7 @@ public partial class SettingsPage : Page
         {
             InitialScanField.BorderBrush = null;
             CacheObjects.SettingsCache.AddValue(SettingKeys.InitialDirectory, InitialScanField.Text);
+            CacheLoader.SaveSettingValuesFromCache();
         }
     }
 }

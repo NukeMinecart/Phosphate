@@ -39,7 +39,7 @@
                 <ui:ToggleSwitch Name="ThemeSwitch" Grid.Row="1" OnContent="Dark" OffContent="Light" Click="ChangeTheme"></ui:ToggleSwitch>
                 <ui:ToggleSwitch Name="ContrastSwitch" Grid.Row="2" Click="ChangeHighContrast">High Contrast</ui:ToggleSwitch>
             </Grid>
-            <Grid Grid.Column="1">
+            <Grid Grid.Column="1" >
                 <Grid.RowDefinitions>
                     <RowDefinition MaxHeight="32"/>
                     <RowDefinition MaxHeight="32"/>

@@ -40,7 +40,12 @@ public static class CacheLoader
     
     public static void SaveValuesFromCache()
     {
-        JsonLoader.SaveValuesToJson(Config.ConfigFile, CacheObjects.SettingsCache);
+        SaveSettingValuesFromCache();
         JsonLoader.SaveValuesToJson(Config.ExecutableCacheFile, CacheObjects.ExecutableItemCache.Value!.Select(file => file.FullName).ToList());
+    }
+
+    public static void SaveSettingValuesFromCache()
+    {
+        JsonLoader.SaveValuesToJson(Config.ConfigFile, CacheObjects.SettingsCache);
     }
 }
