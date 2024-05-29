@@ -4,7 +4,6 @@ using System.Windows.Controls;
 using System.Windows.Media;
 
 using Phosphate.Cache;
-using TextBox = Wpf.Ui.Controls.TextBox;
 
 namespace Phosphate.View.Pages;
 
@@ -13,7 +12,6 @@ public partial class SettingsPage : Page
     public SettingsPage()
     {
         InitializeComponent();
-
         ThemeSwitch.IsChecked = CacheObjects.SettingsCache.GetValue(SettingKeys.DarkTheme, true, CacheObjects.BooleanConverter);
         ContrastSwitch.IsChecked = CacheObjects.SettingsCache.GetValue(SettingKeys.HighContrast, false, CacheObjects.BooleanConverter);
         ScanSwitch.IsChecked =
@@ -25,19 +23,21 @@ public partial class SettingsPage : Page
     private void ChangeHighContrast(object sender, RoutedEventArgs e)
     {
         CacheObjects.SettingsCache.AddValue(SettingKeys.HighContrast, ContrastSwitch.IsChecked!.Value);
+        SaveSettingValues();
         UpdateSettings.Update();
     }
 
     private void ChangeTheme(object sender, RoutedEventArgs e)
     {
         CacheObjects.SettingsCache.AddValue(SettingKeys.DarkTheme, ThemeSwitch.IsChecked!.Value);
+        SaveSettingValues();
         UpdateSettings.Update();
     }
 
     private void ChangeScanOnReload(object sender, RoutedEventArgs e)
     {
         CacheObjects.SettingsCache.AddValue(SettingKeys.RescanOnReload, ScanSwitch.IsChecked!.Value);
-        CacheLoader.SaveSettingValuesFromCache();
+        SaveSettingValues();
     }
 
     private void ValidateFilePath(object sender, TextChangedEventArgs e)
@@ -48,7 +48,19 @@ public partial class SettingsPage : Page
         {
             InitialScanField.BorderBrush = null;
             CacheObjects.SettingsCache.AddValue(SettingKeys.InitialDirectory, InitialScanField.Text);
+            SaveSettingValues();
+        }
+    }
+
+    private static void SaveSettingValues()
+    {
+        try
+        {
             CacheLoader.SaveSettingValuesFromCache();
+        }
+        catch (Exception)
+        {
+            //ignored
         }
     }
 }

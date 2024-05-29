@@ -4,6 +4,10 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:controls="clr-namespace:Phosphate.View.Resources"
+      ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+      ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+      Foreground="{DynamicResource TextFillColorPrimaryBrush}"
       mc:Ignorable="d"
       Title="SettingsPage">
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -17,6 +21,20 @@
             <RowDefinition />
             <RowDefinition Height="8"/>
         </Grid.RowDefinitions>
+        <!-- Fix -->
+        <controls:Setting Grid.Row="1" Grid.Column="1" >
+            <controls:Setting.Content>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Button
+                    Grid.Column="0"
+                    Content="Standard WPF button"/>
+            </Grid>
+            </controls:Setting.Content>
+        </controls:Setting>
         
         <Grid Grid.Row="1" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>

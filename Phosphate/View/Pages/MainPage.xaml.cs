@@ -22,11 +22,6 @@ public partial class MainPage : Page
                 new FileInfo(@"C:\Users\bradl\OneDrive\Desktop\Stuff\mmc-stable-win32\MultiMC\MultiMC.exe"), "MultiMC",
                 new Size(100, 100)); 
         AddLaunch(exeItem);
-        
-        JsonLoader.SaveValuesToJson(new FileInfo(Path.Combine(Config.ItemDirectory.FullName, exeItem.Name + ".json")), exeItem);
-
-        AddLaunch(JsonLoader.LoadValuesFromJson<ExecutableItem>(new FileInfo(Path.Combine(Config.ItemDirectory.FullName,
-            exeItem.Name + ".json"))));
     }
     
     private void AddLaunch(ExecutableItem item)

@@ -13,7 +13,6 @@ public static class UpdateSettings
             : CacheObjects.SettingsCache.GetValue(SettingKeys.DarkTheme, true, CacheObjects.BooleanConverter)
                 ? ApplicationTheme.Dark
                 : ApplicationTheme.Light);
-        CacheLoader.SaveSettingValuesFromCache();
     }
 
     public static void Start()
