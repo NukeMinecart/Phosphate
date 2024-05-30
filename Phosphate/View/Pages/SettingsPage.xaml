@@ -5,9 +5,11 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       xmlns:controls="clr-namespace:Phosphate.View.Resources"
+      
       ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
       ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
       Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+      
       mc:Ignorable="d"
       Title="SettingsPage">
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -19,60 +21,18 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="8"/>
             <RowDefinition />
+            <RowDefinition />
             <RowDefinition Height="8"/>
         </Grid.RowDefinitions>
-        <!-- Fix -->
-        <controls:Setting Grid.Row="1" Grid.Column="1" >
-            <controls:Setting.Content>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <Button
-                    Grid.Column="0"
-                    Content="Standard WPF button"/>
-            </Grid>
-            </controls:Setting.Content>
-        </controls:Setting>
-        
-        <Grid Grid.Row="1" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
+
+        <controls:Setting Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                          Margin="0"
+                          HeaderText="Customization">
+            <Label Content="This is setting property" VerticalAlignment="Center"/>
             
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition MaxHeight="32"/>
-                    <RowDefinition MaxHeight="32"/>
-                    <RowDefinition MaxHeight="32"/>
-                </Grid.RowDefinitions>
-                <Label>
-                    <Label.Content>
-                        Theme
-                    </Label.Content>
-                    <Label.FontSize>20</Label.FontSize> 
-                </Label>
-                <ui:ToggleSwitch Name="ThemeSwitch" Grid.Row="1" OnContent="Dark" OffContent="Light" Click="ChangeTheme"></ui:ToggleSwitch>
-                <ui:ToggleSwitch Name="ContrastSwitch" Grid.Row="2" Click="ChangeHighContrast">High Contrast</ui:ToggleSwitch>
-            </Grid>
-            <Grid Grid.Column="1" >
-                <Grid.RowDefinitions>
-                    <RowDefinition MaxHeight="32"/>
-                    <RowDefinition MaxHeight="32"/>
-                    <RowDefinition MaxHeight="40"/>
-                </Grid.RowDefinitions>
-                <Label>
-                    <Label.Content>
-                        File
-                    </Label.Content>
-                    <Label.FontSize>20</Label.FontSize> 
-                </Label>
-                <ui:ToggleSwitch Name="ScanSwitch" Grid.Row="1" Click="ChangeScanOnReload">Rescan on Reload</ui:ToggleSwitch>
-                <ui:TextBox Name="InitialScanField" Grid.Row="2" PlaceholderText="Initial Scan Directory" BorderThickness="1" MaxLines="1" TextChanged="ValidateFilePath">C:/</ui:TextBox>
-            </Grid>
-        </Grid>
-        
+            <controls:Setting.SettingContent>
+                <Button Content="Button"/>
+            </controls:Setting.SettingContent>
+        </controls:Setting>
     </Grid>
 </Page>
