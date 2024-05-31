@@ -1,21 +1,10 @@
-﻿using System.ComponentModel;
-using System.IO;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
-using System.Windows.Media;
 using Phosphate.Cache;
-using Phosphate.Event;
-using Phosphate.Files.FileScanner;
-using Phosphate.Launcher;
 using Phosphate.View.Pages;
 using Wpf.Ui.Controls;
-using Button = Wpf.Ui.Controls.Button;
-using Image = Wpf.Ui.Controls.Image;
-using ImageConverter = Phosphate.Converters.ImageConverter;
-using MessageBox = Wpf.Ui.Controls.MessageBox;
 
 namespace Phosphate.View;
 
@@ -42,6 +31,7 @@ public partial class MainWindow : FluentWindow
         base.OnSourceInitialized(e);
         ((HwndSource)PresentationSource.FromVisual(this)!).AddHook(HookProc);
         NavView.Navigate(typeof(MainPage));
+        WindowState = WindowState.Maximized;
     }
     
     private static IntPtr HookProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)

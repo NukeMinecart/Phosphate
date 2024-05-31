@@ -1,7 +1,13 @@
+using System.IO;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
 using Phosphate.Cache;
 using Phosphate.Converters;
+using Phosphate.Validation;
 using Wpf.Ui.Appearance;
+using Wpf.Ui.Controls;
 using static Phosphate.Cache.SettingKeys;
 
 namespace Phosphate.View.Pages;
@@ -11,15 +17,15 @@ public partial class SettingsPage : Page
     public SettingsPage()
     {
         InitializeComponent();
-        DataContext = this;
         
-        // ScanSwitch.IsChecked =
-        //     CacheObjects.SettingsCache.GetValue(SettingKeys.RescanOnReload, false, CacheObjects.BooleanConverter);
-        // InitialScanField.Text = CacheObjects.SettingsCache.GetValue(SettingKeys.InitialDirectory, "C:/", CacheObjects.StringConverter);
-        // InitialScanField.BorderBrush = null;
-
         ThemeSelector.SelectedIndex = CacheObjects.SettingsCache.GetValue(ThemeIndex,
             ThemeToIndexConverter.ConvertThemeToIndex(ApplicationTheme.Dark), CacheObjects.IntegerConverter);
+        
+        RescanSwitch.IsChecked =
+        CacheObjects.SettingsCache.GetValue(RescanOnReload, false, CacheObjects.BooleanConverter);
+        
+        InitialScanField.Text = CacheObjects.SettingsCache.GetValue(InitialDirectory, "C:/", CacheObjects.StringConverter);
+        InitialScanField.Icon = new SymbolIcon(SymbolRegular.CheckmarkCircle24);
     }
 
     private void ChangeTheme(object source, SelectionChangedEventArgs args)
@@ -31,21 +37,21 @@ public partial class SettingsPage : Page
         ApplicationThemeManager.Apply(ThemeToIndexConverter.ConvertIndexToTheme(selectedIndex));
     }
     
-    // private void ChangeScanOnReload(object sender, RoutedEventArgs e)
-    // {
-    //     CacheObjects.SettingsCache.AddValue(SettingKeys.RescanOnReload, ScanSwitch.IsChecked!.Value);
-    //     SaveSettingValues();
-    // }
-    //
-    // private void ValidateFilePath(object sender, TextChangedEventArgs e)
-    // {
-    //     if (!Directory.Exists(InitialScanField.GetLineText(0)))
-    //         InitialScanField.BorderBrush = new LinearGradientBrush(Colors.DarkRed, Colors.Crimson, 45);
-    //     else
-    //     {
-    //         InitialScanField.BorderBrush = null;
-    //         CacheObjects.SettingsCache.AddValue(SettingKeys.InitialDirectory, InitialScanField.Text);
-    //         SaveSettingValues();
-    //     }
-    // }
+    private void ChangeScanOnReload(object sender, RoutedEventArgs e)
+    {
+        CacheObjects.SettingsCache.AddValue(RescanOnReload, RescanSwitch.IsChecked!.Value);
+    }
+    
+    private void ValidateFilePath(object sender, TextChangedEventArgs e)
+    {
+        if (Validators.ValidateDirectory(InitialScanField.GetLineText(0)))
+        {
+            CacheObjects.SettingsCache.AddValue(InitialDirectory, InitialScanField.Text);
+            InitialScanField.Icon = new SymbolIcon(SymbolRegular.CheckmarkCircle24);
+        }
+        else
+        {
+            InitialScanField.Icon = new SymbolIcon(SymbolRegular.ErrorCircle24);
+        }
+    }
 }

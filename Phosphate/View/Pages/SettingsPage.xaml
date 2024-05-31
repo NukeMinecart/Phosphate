@@ -4,22 +4,24 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-      xmlns:converters="clr-namespace:Phosphate.Converters"
-      xmlns:pages="clr-namespace:Phosphate.View.Pages"
-
-      d:DataContext="{d:DesignInstance pages:SettingsPage,
-                                     IsDesignTimeCreatable=False}"
-
       ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
       ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
       Foreground="{DynamicResource TextFillColorPrimaryBrush}"
-
       mc:Ignorable="d"
       Title="SettingsPage">
-    <StackPanel Margin="0,0,0,24">
+    
+    <Page.Resources>
+
+    </Page.Resources>
+    
+    <StackPanel Margin="24">
         <ui:TextBlock
-            Margin="0,0,0,8"
-            FontTypography="BodyStrong"
+            Margin="0,8,0,8"
+            FontTypography="Title"
+            Text="Settings" />
+        <ui:TextBlock
+            Margin="0,8,0,8"
+            FontTypography="Subtitle"
             Text="Appearance" />
         <ui:CardControl Margin="0,0,0,12" Icon="{ui:SymbolIcon Color24}">
             <ui:CardControl.Header>
@@ -44,6 +46,53 @@
                 <ComboBoxItem Content="Dark" />
                 <ComboBoxItem Content="High Contrast" />
             </ComboBox>
+        </ui:CardControl>
+        
+        <Separator />
+
+        <ui:TextBlock
+            Margin="0,8,0,8"
+            FontTypography="Subtitle"
+            Text="Files" />
+        
+        <ui:CardControl Margin="0,0,0,12" Icon="{ui:SymbolIcon ArrowClockwise24}">
+            <ui:CardControl.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <ui:TextBlock
+                        Grid.Row="0"
+                        FontTypography="Body"
+                        Text="Rescan files on reload" />
+                    <ui:TextBlock
+                        Grid.Row="1"
+                        Foreground="{ui:ThemeResource TextFillColorSecondaryBrush}"
+                        Text="Should Phosphate rescan for executable files on reload" />
+                </Grid>
+            </ui:CardControl.Header>
+            <ui:ToggleSwitch Name="RescanSwitch" Click="ChangeScanOnReload" />
+        </ui:CardControl>
+        
+        <ui:CardControl Margin="0,0,0,12" Icon="{ui:SymbolIcon Search24}">
+            <ui:CardControl.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <ui:TextBlock
+                        Grid.Row="0"
+                        FontTypography="Body"
+                        Text="Initial Scan Location" />
+                    <ui:TextBlock
+                        Grid.Row="1"
+                        Foreground="{ui:ThemeResource TextFillColorSecondaryBrush}"
+                        Text="Starting location of scan for executable files" />
+                </Grid>
+            </ui:CardControl.Header>
+            <ui:TextBox Name="InitialScanField" MinWidth="200" MaxWidth="600" MaxLines="1" TextChanged="ValidateFilePath" IconPlacement="Right" ClearButtonEnabled="False" />
         </ui:CardControl>
     </StackPanel>
 </Page>
