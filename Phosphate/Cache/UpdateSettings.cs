@@ -1,6 +1,8 @@
 using System.IO;
+using Phosphate.Converters;
 using Phosphate.Files.FileScanner;
 using Wpf.Ui.Appearance;
+using static Phosphate.Cache.SettingKeys;
 
 namespace Phosphate.Cache;
 
@@ -8,11 +10,8 @@ public static class UpdateSettings
 {
     public static void Update()
     {
-        ApplicationThemeManager.Apply(CacheObjects.SettingsCache.GetValue(SettingKeys.HighContrast, false, CacheObjects.BooleanConverter)
-            ? ApplicationTheme.HighContrast
-            : CacheObjects.SettingsCache.GetValue(SettingKeys.DarkTheme, true, CacheObjects.BooleanConverter)
-                ? ApplicationTheme.Dark
-                : ApplicationTheme.Light);
+        ApplicationThemeManager.Apply(ThemeToIndexConverter.ConvertIndexToTheme(
+            CacheObjects.SettingsCache.GetValue(ThemeIndex, ThemeToIndexConverter.ConvertThemeToIndex(ApplicationTheme.Dark), CacheObjects.IntegerConverter)));
     }
 
     public static void Start()
@@ -25,6 +24,7 @@ public static class UpdateSettings
             });
             fileSearchThread.Start();
         }
+
         Update();
     }
 }

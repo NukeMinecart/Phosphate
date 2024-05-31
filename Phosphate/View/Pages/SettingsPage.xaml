@@ -4,35 +4,46 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-      xmlns:controls="clr-namespace:Phosphate.View.Resources"
-      
+      xmlns:converters="clr-namespace:Phosphate.Converters"
+      xmlns:pages="clr-namespace:Phosphate.View.Pages"
+
+      d:DataContext="{d:DesignInstance pages:SettingsPage,
+                                     IsDesignTimeCreatable=False}"
+
       ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
       ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
       Foreground="{DynamicResource TextFillColorPrimaryBrush}"
-      
+
       mc:Ignorable="d"
       Title="SettingsPage">
-    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="8"/>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="8"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="8"/>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition Height="8"/>
-        </Grid.RowDefinitions>
-
-        <controls:Setting Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                          Margin="0"
-                          HeaderText="Customization">
-            <Label Content="This is setting property" VerticalAlignment="Center"/>
-            
-            <controls:Setting.SettingContent>
-                <Button Content="Button"/>
-            </controls:Setting.SettingContent>
-        </controls:Setting>
-    </Grid>
+    <StackPanel Margin="0,0,0,24">
+        <ui:TextBlock
+            Margin="0,0,0,8"
+            FontTypography="BodyStrong"
+            Text="Appearance" />
+        <ui:CardControl Margin="0,0,0,12" Icon="{ui:SymbolIcon Color24}">
+            <ui:CardControl.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <ui:TextBlock
+                        Grid.Row="0"
+                        FontTypography="Body"
+                        Text="App theme" />
+                    <ui:TextBlock
+                        Grid.Row="1"
+                        Foreground="{ui:ThemeResource TextFillColorSecondaryBrush}"
+                        Text="Select which app theme to display" />
+                </Grid>
+            </ui:CardControl.Header>
+            <ComboBox Name="ThemeSelector"
+                      MinWidth="200" SelectionChanged="ChangeTheme">
+                <ComboBoxItem Content="Light" />
+                <ComboBoxItem Content="Dark" />
+                <ComboBoxItem Content="High Contrast" />
+            </ComboBox>
+        </ui:CardControl>
+    </StackPanel>
 </Page>

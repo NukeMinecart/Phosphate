@@ -1,9 +1,8 @@
-using System.IO;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-
 using Phosphate.Cache;
+using Phosphate.Converters;
+using Wpf.Ui.Appearance;
+using static Phosphate.Cache.SettingKeys;
 
 namespace Phosphate.View.Pages;
 
@@ -12,28 +11,26 @@ public partial class SettingsPage : Page
     public SettingsPage()
     {
         InitializeComponent();
-        // ThemeSwitch.IsChecked = CacheObjects.SettingsCache.GetValue(SettingKeys.DarkTheme, true, CacheObjects.BooleanConverter);
-        // ContrastSwitch.IsChecked = CacheObjects.SettingsCache.GetValue(SettingKeys.HighContrast, false, CacheObjects.BooleanConverter);
+        DataContext = this;
+        
         // ScanSwitch.IsChecked =
         //     CacheObjects.SettingsCache.GetValue(SettingKeys.RescanOnReload, false, CacheObjects.BooleanConverter);
         // InitialScanField.Text = CacheObjects.SettingsCache.GetValue(SettingKeys.InitialDirectory, "C:/", CacheObjects.StringConverter);
         // InitialScanField.BorderBrush = null;
+
+        ThemeSelector.SelectedIndex = CacheObjects.SettingsCache.GetValue(ThemeIndex,
+            ThemeToIndexConverter.ConvertThemeToIndex(ApplicationTheme.Dark), CacheObjects.IntegerConverter);
     }
 
-    // private void ChangeHighContrast(object sender, RoutedEventArgs e)
-    // {
-    //     CacheObjects.SettingsCache.AddValue(SettingKeys.HighContrast, ContrastSwitch.IsChecked!.Value);
-    //     SaveSettingValues();
-    //     UpdateSettings.Update();
-    // }
-    //
-    // private void ChangeTheme(object sender, RoutedEventArgs e)
-    // {
-    //     CacheObjects.SettingsCache.AddValue(SettingKeys.DarkTheme, ThemeSwitch.IsChecked!.Value);
-    //     SaveSettingValues();
-    //     UpdateSettings.Update();
-    // }
-    //
+    private void ChangeTheme(object source, SelectionChangedEventArgs args)
+    {
+        //TODO do a queue implementation of file saving and searching and dont exit the program until queue is empty
+        var selectedIndex = ((ComboBox)source).SelectedIndex;
+        CacheObjects.SettingsCache.AddValue(ThemeIndex, selectedIndex);
+
+        ApplicationThemeManager.Apply(ThemeToIndexConverter.ConvertIndexToTheme(selectedIndex));
+    }
+    
     // private void ChangeScanOnReload(object sender, RoutedEventArgs e)
     // {
     //     CacheObjects.SettingsCache.AddValue(SettingKeys.RescanOnReload, ScanSwitch.IsChecked!.Value);
@@ -51,16 +48,4 @@ public partial class SettingsPage : Page
     //         SaveSettingValues();
     //     }
     // }
-
-    private static void SaveSettingValues()
-    {
-        try
-        {
-            CacheLoader.SaveSettingValuesFromCache();
-        }
-        catch (Exception)
-        {
-            //ignored
-        }
-    }
 }

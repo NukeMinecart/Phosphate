@@ -12,15 +12,17 @@ public static class CacheObjects
     public static Property<List<FileInfo>> ExecutableItemCache { get; } = new();
 
     public static readonly Func<object, bool> BooleanConverter = value => bool.Parse(value.ToString()!);
+    public static readonly Func<object, int> IntegerConverter = value => int.Parse(value.ToString()!);
+
     public static readonly Func<object, string> StringConverter = value => value.ToString()!;
-    
+
     public class Cache : Dictionary<string, object>
     {
         public void AddValue(string key, object value)
         {
             if (!TryAdd(key, value)) this[key] = value;
         }
-        
+
         public TK GetValue<TK>(string key, TK defaultValue)
         {
             if (!ContainsKey(key))
@@ -37,7 +39,7 @@ public static class CacheObjects
 
             return (TK)this[key];
         }
-        
+
         public TK GetValue<TK>(string key, TK defaultValue, Func<object, TK> converter)
         {
             if (!ContainsKey(key))
@@ -49,6 +51,4 @@ public static class CacheObjects
             return converter.Invoke(this[key]);
         }
     }
-
-    
 }
