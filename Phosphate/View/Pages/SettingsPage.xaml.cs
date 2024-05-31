@@ -14,6 +14,8 @@ namespace Phosphate.View.Pages;
 
 public partial class SettingsPage : Page
 {
+    private static readonly SymbolIcon ValidIcon = new(SymbolRegular.CheckmarkCircle24){Foreground = Brushes.LawnGreen};
+    private static readonly SymbolIcon InvalidIcon = new(SymbolRegular.ErrorCircle24){Foreground = Brushes.Red};
     public SettingsPage()
     {
         InitializeComponent();
@@ -25,7 +27,7 @@ public partial class SettingsPage : Page
         CacheObjects.SettingsCache.GetValue(RescanOnReload, false, CacheObjects.BooleanConverter);
         
         InitialScanField.Text = CacheObjects.SettingsCache.GetValue(InitialDirectory, "C:/", CacheObjects.StringConverter);
-        InitialScanField.Icon = new SymbolIcon(SymbolRegular.CheckmarkCircle24);
+        InitialScanField.Icon = ValidIcon;
     }
 
     private void ChangeTheme(object source, SelectionChangedEventArgs args)
@@ -41,17 +43,17 @@ public partial class SettingsPage : Page
     {
         CacheObjects.SettingsCache.AddValue(RescanOnReload, RescanSwitch.IsChecked!.Value);
     }
-    
+
     private void ValidateFilePath(object sender, TextChangedEventArgs e)
     {
         if (Validators.ValidateDirectory(InitialScanField.GetLineText(0)))
         {
             CacheObjects.SettingsCache.AddValue(InitialDirectory, InitialScanField.Text);
-            InitialScanField.Icon = new SymbolIcon(SymbolRegular.CheckmarkCircle24);
+            InitialScanField.Icon = ValidIcon;
         }
         else
         {
-            InitialScanField.Icon = new SymbolIcon(SymbolRegular.ErrorCircle24);
+            InitialScanField.Icon = InvalidIcon;
         }
     }
 }

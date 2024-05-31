@@ -43,7 +43,7 @@
             <ComboBox Name="ThemeSelector"
                       MinWidth="200" SelectionChanged="ChangeTheme">
                 <ComboBoxItem Content="Light" />
-                <ComboBoxItem Content="Dark" />
+                <ComboBoxItem Content="Dark (Recommended)" />
                 <ComboBoxItem Content="High Contrast" />
             </ComboBox>
         </ui:CardControl>
