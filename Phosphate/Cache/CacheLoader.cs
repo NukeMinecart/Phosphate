@@ -3,6 +3,7 @@ using System.IO;
 using System.Text.Json;
 using Microsoft.Win32.SafeHandles;
 using Phosphate.Event;
+using Phosphate.Files;
 using Phosphate.Files.FileScanner;
 using Phosphate.Files.Json;
 using Phosphate.Launcher.Launch;
@@ -40,12 +41,12 @@ public static class CacheLoader
     
     public static void SaveValuesFromCache()
     {
-        SaveSettingValuesFromCache();
-        JsonLoader.SaveValuesToJson(Config.ExecutableCacheFile, CacheObjects.ExecutableItemCache.Value!.Select(file => file.FullName).ToList());
+        AddSettingsToSaveQueue();
+        FileQueue.Add(Config.ExecutableCacheFile, CacheObjects.ExecutableItemCache.Value!.Select(file => file.FullName).ToList());
     }
 
-    public static void SaveSettingValuesFromCache()
+    public static void AddSettingsToSaveQueue()
     {
-        JsonLoader.SaveValuesToJson(Config.ConfigFile, CacheObjects.SettingsCache);
+        FileQueue.Add(Config.ConfigFile, CacheObjects.SettingsCache);
     }
 }

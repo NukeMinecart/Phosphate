@@ -1,12 +1,11 @@
 using System.IO;
 using System.Text.Json;
-using Phosphate.Cache;
 
 namespace Phosphate.Files.Json;
 
 public static class JsonLoader
 {
-    private static JsonSerializerOptions _serializerOptions = new JsonSerializerOptions
+    private static readonly JsonSerializerOptions SerializerOptions = new()
     {
         IncludeFields = true
     };
@@ -14,7 +13,7 @@ public static class JsonLoader
     public static T LoadValuesFromJson<T>(FileInfo path)
     {
         var fileStream = new FileStream(path.FullName, FileMode.Open);
-        return JsonSerializer.Deserialize<T>(fileStream, _serializerOptions) ??
+        return JsonSerializer.Deserialize<T>(fileStream, SerializerOptions) ??
                                      throw new NullReferenceException("Json deserialization is null");
     }
 

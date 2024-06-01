@@ -5,6 +5,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using Phosphate.Cache;
 using Phosphate.Converters;
+using Phosphate.Files;
 using Phosphate.Validation;
 using Wpf.Ui.Appearance;
 using Wpf.Ui.Controls;
@@ -35,6 +36,7 @@ public partial class SettingsPage : Page
         //TODO do a queue implementation of file saving and searching and dont exit the program until queue is empty
         var selectedIndex = ((ComboBox)source).SelectedIndex;
         CacheObjects.SettingsCache.AddValue(ThemeIndex, selectedIndex);
+        CacheLoader.AddSettingsToSaveQueue();
 
         ApplicationThemeManager.Apply(ThemeToIndexConverter.ConvertIndexToTheme(selectedIndex));
     }
@@ -42,6 +44,7 @@ public partial class SettingsPage : Page
     private void ChangeScanOnReload(object sender, RoutedEventArgs e)
     {
         CacheObjects.SettingsCache.AddValue(RescanOnReload, RescanSwitch.IsChecked!.Value);
+        CacheLoader.AddSettingsToSaveQueue();
     }
 
     private void ValidateFilePath(object sender, TextChangedEventArgs e)
@@ -49,6 +52,7 @@ public partial class SettingsPage : Page
         if (Validators.ValidateDirectory(InitialScanField.GetLineText(0)))
         {
             CacheObjects.SettingsCache.AddValue(InitialDirectory, InitialScanField.Text);
+            CacheLoader.AddSettingsToSaveQueue();
             InitialScanField.Icon = ValidIcon;
         }
         else
