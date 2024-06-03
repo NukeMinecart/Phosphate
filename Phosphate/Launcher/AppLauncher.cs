@@ -1,6 +1,5 @@
 using System.Diagnostics;
 using System.IO;
-using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Phosphate.Launcher;
@@ -11,7 +10,7 @@ public static class AppLauncher
     {
         Process.Start(exe.FullName);
     }
-    
+
     public static bool IsExecutableFile(FileInfo fileInfo)
     {
         var twoBytes = new byte[2];

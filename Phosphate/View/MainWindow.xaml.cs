@@ -19,7 +19,7 @@ public partial class MainWindow : FluentWindow
         CacheLoader.LoadValuesIntoCache();
         UpdateSettings.Start();
     }
-    
+
     private void Window_MouseDown(object sender, MouseButtonEventArgs e)
     {
         if (e.ChangedButton == MouseButton.Left)
@@ -33,7 +33,7 @@ public partial class MainWindow : FluentWindow
         NavView.Navigate(typeof(MainPage));
         WindowState = WindowState.Maximized;
     }
-    
+
     private static IntPtr HookProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
     {
         if (msg == WmGetMinMaxInfo)
@@ -41,10 +41,10 @@ public partial class MainWindow : FluentWindow
             // We need to tell the system what our size should be when maximized. Otherwise it will cover the whole screen,
             // including the task bar.
             var mmi = (MinMaxInfo)Marshal.PtrToStructure(lParam, typeof(MinMaxInfo))!;
-    
+
             // Adjust the maximized size and position to fit the work area of the correct monitor
             var monitor = MonitorFromWindow(hwnd, MonitorDefaultToNearest);
-    
+
             if (monitor != IntPtr.Zero)
             {
                 var monitorInfo = new MonitorInfo
@@ -59,23 +59,23 @@ public partial class MainWindow : FluentWindow
                 mmi.ptMaxSize.X = Math.Abs(rcWorkArea.Right - rcWorkArea.Left);
                 mmi.ptMaxSize.Y = Math.Abs(rcWorkArea.Bottom - rcWorkArea.Top - 1);
             }
-    
+
             Marshal.StructureToPtr(mmi, lParam, true);
         }
-    
+
         return IntPtr.Zero;
     }
-    
+
     private const int WmGetMinMaxInfo = 0x0024;
-    
+
     private const uint MonitorDefaultToNearest = 0x00000002;
-    
+
     [DllImport("user32.dll")]
     private static extern IntPtr MonitorFromWindow(IntPtr handle, uint flags);
-    
+
     [DllImport("user32.dll")]
     private static extern bool GetMonitorInfo(IntPtr hMonitor, ref MonitorInfo lpmi);
-    
+
     [Serializable]
     [StructLayout(LayoutKind.Sequential)]
     public struct Rect(int left, int top, int right, int bottom)
@@ -85,7 +85,7 @@ public partial class MainWindow : FluentWindow
         public int Right = right;
         public int Bottom = bottom;
     }
-    
+
     [StructLayout(LayoutKind.Sequential)]
     public struct MonitorInfo
     {
@@ -94,7 +94,7 @@ public partial class MainWindow : FluentWindow
         public Rect rcWork;
         public uint dwFlags;
     }
-    
+
     [Serializable]
     [StructLayout(LayoutKind.Sequential)]
     public struct Point(int x, int y)
@@ -102,7 +102,7 @@ public partial class MainWindow : FluentWindow
         public int X = x;
         public int Y = y;
     }
-    
+
     [StructLayout(LayoutKind.Sequential)]
     public struct MinMaxInfo
     {

@@ -9,11 +9,11 @@
       Foreground="{DynamicResource TextFillColorPrimaryBrush}"
       mc:Ignorable="d"
       Title="SettingsPage">
-    
+
     <Page.Resources>
 
     </Page.Resources>
-    
+
     <StackPanel Margin="24">
         <ui:TextBlock
             Margin="0,8,0,8"
@@ -47,14 +47,14 @@
                 <ComboBoxItem Content="High Contrast" />
             </ComboBox>
         </ui:CardControl>
-        
+
         <Separator />
 
         <ui:TextBlock
             Margin="0,8,0,8"
             FontTypography="Subtitle"
             Text="Files" />
-        
+
         <ui:CardControl Margin="0,0,0,12" Icon="{ui:SymbolIcon ArrowClockwise24}">
             <ui:CardControl.Header>
                 <Grid>
@@ -74,7 +74,7 @@
             </ui:CardControl.Header>
             <ui:ToggleSwitch Name="RescanSwitch" Click="ChangeScanOnReload" />
         </ui:CardControl>
-        
+
         <ui:CardControl Margin="0,0,0,12" Icon="{ui:SymbolIcon Search24}">
             <ui:CardControl.Header>
                 <Grid>
@@ -92,7 +92,8 @@
                         Text="Starting location of scan for executable files" />
                 </Grid>
             </ui:CardControl.Header>
-            <ui:TextBox Name="InitialScanField" MinWidth="200" MaxWidth="600" MaxLines="1" TextChanged="ValidateFilePath" IconPlacement="Right" ClearButtonEnabled="False" />
+            <ui:TextBox Name="InitialScanField" MinWidth="200" MaxWidth="600" MaxLines="1"
+                        TextChanged="ValidateFilePath" IconPlacement="Right" ClearButtonEnabled="False" />
         </ui:CardControl>
     </StackPanel>
 </Page>

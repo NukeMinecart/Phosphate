@@ -6,18 +6,14 @@ namespace Phosphate.Launcher.Launch;
 
 public struct ExecutableItem(FileInfo exePath, string name, Size size)
 {
-    [JsonInclude]
-    public string Name { get; private set; } = name;
-    
-    [JsonInclude]
-    private string _exePath = exePath.FullName;
-    
-    [JsonInclude] 
-    public Size Size { get; private set; } = size;
+    [JsonInclude] public string Name { get; private set; } = name;
 
-    [JsonIgnore]
-    private Icon _icon = GetIcon(exePath, size);
-    
+    [JsonInclude] private string _exePath = exePath.FullName;
+
+    [JsonInclude] public Size Size { get; private set; } = size;
+
+    [JsonIgnore] private Icon _icon = GetIcon(exePath, size);
+
     public void Execute()
     {
         AppLauncher.LaunchExe(new FileInfo(_exePath));

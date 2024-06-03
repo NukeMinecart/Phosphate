@@ -22,6 +22,7 @@ public static class UpdateSettings
         }
 
         ApplicationThemeManager.Apply(ThemeToIndexConverter.ConvertIndexToTheme(
-            CacheObjects.SettingsCache.GetValue(ThemeIndex, ThemeToIndexConverter.ConvertThemeToIndex(ApplicationTheme.Dark), CacheObjects.IntegerConverter)));    
+            CacheObjects.SettingsCache.GetValue(ThemeIndex,
+                ThemeToIndexConverter.ConvertThemeToIndex(ApplicationTheme.Dark), CacheObjects.IntegerConverter)));
     }
 }

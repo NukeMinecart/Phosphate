@@ -8,16 +8,17 @@
       Title="AddPage">
     <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition MinWidth="8" MaxWidth="8"/>
+            <ColumnDefinition MinWidth="8" MaxWidth="8" />
             <ColumnDefinition />
-            <ColumnDefinition MinWidth="8" MaxWidth="8"/>
+            <ColumnDefinition MinWidth="8" MaxWidth="8" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition MinHeight="8" MaxHeight="8"/>
+            <RowDefinition MinHeight="8" MaxHeight="8" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        
-        <ui:AutoSuggestBox Grid.Column="1" Grid.Row="1" x:Name="AutoSuggestBox" PlaceholderText="Search" VerticalAlignment="Top">
+
+        <ui:AutoSuggestBox Grid.Column="1" Grid.Row="1" x:Name="AutoSuggestBox" PlaceholderText="Search"
+                           VerticalAlignment="Top">
             <ui:AutoSuggestBox.Icon>
                 <ui:IconSourceElement>
                     <ui:SymbolIconSource Symbol="Search24" />

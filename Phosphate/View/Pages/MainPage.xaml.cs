@@ -1,11 +1,8 @@
-using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Phosphate.Converters;
-using Phosphate.Files.Json;
-using Phosphate.Launcher;
 using Phosphate.Launcher.Launch;
 using Image = Wpf.Ui.Controls.Image;
 using Size = System.Drawing.Size;
@@ -20,10 +17,10 @@ public partial class MainPage : Page
         var exeItem =
             new ExecutableItem(
                 new FileInfo(@"C:\Users\bradl\OneDrive\Desktop\Stuff\mmc-stable-win32\MultiMC\MultiMC.exe"), "MultiMC",
-                new Size(100, 100)); 
+                new Size(100, 100));
         AddLaunch(exeItem);
     }
-    
+
     private void AddLaunch(ExecutableItem item)
     {
         var image = new Image
@@ -32,42 +29,42 @@ public partial class MainPage : Page
             MaxWidth = item.Size.Width,
             MaxHeight = item.Size.Height
         };
-        
+
         image.MouseDown += (_, _) => item.Execute();
         image.Source = ImageConverter.ToImageSource(item.GetIcon());
-        
+
         Grid.SetRow(image, 1);
         Grid.SetColumn(image, 1);
-        
+
         var button = new Button
         {
             Content = item.Name,
             HorizontalAlignment = HorizontalAlignment.Center
         };
-        
+
         button.Click += (_, _) => item.Execute();
         Grid.SetRow(button, 2);
         Grid.SetColumn(button, 1);
-        
+
         var grid = new Grid
         {
             Children = { image, button },
         };
-    
+
         var column1 = new ColumnDefinition
         {
             MinWidth = 8,
             MaxWidth = 8
         };
-        
+
         var column2 = new ColumnDefinition();
-        
+
         var column3 = new ColumnDefinition
         {
             MinWidth = 8,
             MaxWidth = 8
         };
-        
+
         var row0 = new RowDefinition
         {
             MinHeight = 8,
@@ -80,16 +77,16 @@ public partial class MainPage : Page
             MinHeight = 8,
             MaxHeight = 8
         };
-        
+
         grid.ColumnDefinitions.Add(column1);
         grid.ColumnDefinitions.Add(column2);
         grid.ColumnDefinitions.Add(column3);
-    
+
         grid.RowDefinitions.Add(row0);
         grid.RowDefinitions.Add(row1);
         grid.RowDefinitions.Add(row2);
         grid.RowDefinitions.Add(row3);
-    
+
         LaunchPanel.Children.Add(grid);
     }
 }

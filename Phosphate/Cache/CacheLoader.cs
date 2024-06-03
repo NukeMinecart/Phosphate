@@ -12,10 +12,10 @@ public static class CacheLoader
         Directory.CreateDirectory(Config.ConfigDirectory.FullName);
         Directory.CreateDirectory(Config.CacheDirectory.FullName);
         Directory.CreateDirectory(Config.ItemDirectory.FullName);
-        
-        if (!JsonLoader.CreateFile(Config.ConfigFile)) 
+
+        if (!JsonLoader.CreateFile(Config.ConfigFile))
             CacheObjects.SettingsCache = JsonLoader.LoadValuesFromJson<CacheObjects.Cache>(Config.ConfigFile);
-        
+
         foreach (var file in FileSearcher.SearchForFiles(Config.ItemDirectory, "json"))
         {
             var item = JsonLoader.LoadValuesFromJson<ExecutableItem>(file);
@@ -26,18 +26,20 @@ public static class CacheLoader
         {
             if (!JsonLoader.CreateFile(Config.ExecutableCacheFile))
                 CacheObjects.ExecutableItemCache.Value =
-                    JsonLoader.LoadValuesFromJson<List<string>>(Config.ExecutableCacheFile).Select(fileString => new FileInfo(fileString)).ToList();
+                    JsonLoader.LoadValuesFromJson<List<string>>(Config.ExecutableCacheFile)
+                        .Select(fileString => new FileInfo(fileString)).ToList();
         }
         catch (Exception)
         {
             //ignored
         }
     }
-    
+
     public static void SaveValuesFromCache()
     {
         AddSettingsToSaveQueue();
-        JsonLoader.SaveValuesToJson(Config.ExecutableCacheFile, CacheObjects.ExecutableItemCache.Value!.Select(file => file.FullName).ToList());
+        JsonLoader.SaveValuesToJson(Config.ExecutableCacheFile,
+            CacheObjects.ExecutableItemCache.Value!.Select(file => file.FullName).ToList());
     }
 
     public static void AddSettingsToSaveQueue()

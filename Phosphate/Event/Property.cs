@@ -1,14 +1,14 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Phosphate.Cache;
 
 namespace Phosphate.Event;
 
-public sealed class Property<T> (T? initialValue) : INotifyPropertyChanged
+public sealed class Property<T>(T? initialValue) : INotifyPropertyChanged
 {
+    public Property() : this(default)
+    {
+    }
 
-    public Property() : this(default) { }
-    
     public T? Value
     {
         get => initialValue;

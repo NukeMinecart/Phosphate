@@ -8,5 +8,4 @@ public static class Validators
     {
         return value != null && Directory.Exists(value);
     }
-    
 }

@@ -10,10 +10,10 @@ public static class JsonLoader
         IncludeFields = true
     };
 
-    private static readonly Thread WatcherThread = new (WatchThreadPool);
+    private static readonly Thread WatcherThread = new(WatchThreadPool);
     private static readonly HashSet<Task> TaskSet = [];
     private static readonly EventWaitHandle WatcherThreadWait = new(false, EventResetMode.ManualReset);
-    public static bool IsFinished { get; set; } = false;
+    public static bool IsFinished { get; set; }
 
     public static void Initialize()
     {
@@ -46,7 +46,7 @@ public static class JsonLoader
 
             if (TaskSet.Count == 0)
             {
-                if(IsFinished) Thread.CurrentThread.Interrupt();
+                if (IsFinished) Thread.CurrentThread.Interrupt();
 
                 WatcherThreadWait.Reset();
                 WatcherThreadWait.WaitOne();
@@ -58,7 +58,7 @@ public static class JsonLoader
     {
         var fileStream = new FileStream(path.FullName, FileMode.Open);
         return JsonSerializer.Deserialize<T>(fileStream, SerializerOptions) ??
-                                     throw new NullReferenceException("Json deserialization is null");
+               throw new NullReferenceException("Json deserialization is null");
     }
 
     public static void SaveValuesToJson<T>(FileInfo path, T value)

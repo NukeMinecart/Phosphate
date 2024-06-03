@@ -1,10 +1,6 @@
-using System.ComponentModel;
-using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using Phosphate.Cache;
-using Phosphate.Files.FileScanner;
-using Wpf.Ui.Controls;
 
 namespace Phosphate.View.Pages;
 
@@ -13,12 +9,13 @@ public partial class AddPage : Page
     public AddPage()
     {
         InitializeComponent();
-        
+
         if (CacheObjects.ExecutableItemCache.Value != null)
             AddSearchItems();
-        
+
         else
-            CacheObjects.ExecutableItemCache.PropertyChanged += (_, _) => Application.Current.Dispatcher.Invoke(AddSearchItems);
+            CacheObjects.ExecutableItemCache.PropertyChanged +=
+                (_, _) => Application.Current.Dispatcher.Invoke(AddSearchItems);
     }
 
 

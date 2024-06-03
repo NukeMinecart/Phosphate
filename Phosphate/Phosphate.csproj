@@ -9,111 +9,111 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Page Update="Theme\Dark.xaml">
-        <Generator>MSBuild:Compile</Generator>
-        <XamlRuntime>Wpf</XamlRuntime>
-        <SubType>Designer</SubType>
-      </Page>
-      <Page Update="View\MainWindow.xaml">
-        <Generator>MSBuild:Compile</Generator>
-        <XamlRuntime>Wpf</XamlRuntime>
-        <SubType>Designer</SubType>
-      </Page>
-      <Page Update="View\Theme\Control\Button.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </Page>
-      <Page Update="View\Theme\Control\CheckBox.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </Page>
-      <Page Update="View\Theme\Control\ComboBox.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </Page>
-      <Page Update="View\Theme\Control\ListBox.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </Page>
-      <Page Update="View\Theme\Control\ListView.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </Page>
-      <Page Update="View\Theme\Control\ListViewItem.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </Page>
-      <Page Update="View\Theme\Control\RadioButton.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </Page>
-      <Page Update="View\Theme\Control\ScrollViewer.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </Page>
-      <Page Update="View\Theme\Control\TextBox.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </Page>
-      <Page Update="View\Theme\Dark.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </Page>
-      <Page Update="View\Resources\Theme\Control\Button.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </Page>
-      <Page Update="View\Resources\Theme\Control\CheckBox.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </Page>
-      <Page Update="View\Resources\Theme\Control\ComboBox.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </Page>
-      <Page Update="View\Resources\Theme\Control\ListBox.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </Page>
-      <Page Update="View\Resources\Theme\Control\ListView.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </Page>
-      <Page Update="View\Resources\Theme\Control\ListViewItem.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </Page>
-      <Page Update="View\Resources\Theme\Control\RadioButton.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </Page>
-      <Page Update="View\Resources\Theme\Control\ScrollViewer.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </Page>
-      <Page Update="View\Resources\Theme\Control\TextBox.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </Page>
-      <Page Update="View\Resources\Theme\Dark.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </Page>
-      <Page Update="View\Pages\MainPage.xaml">
-        <Generator>MSBuild:Compile</Generator>
-        <XamlRuntime>Wpf</XamlRuntime>
-        <SubType>Designer</SubType>
-      </Page>
-      <Page Update="View\Pages\SettingsPage.xaml">
-        <Generator>MSBuild:Compile</Generator>
-        <XamlRuntime>Wpf</XamlRuntime>
-        <SubType>Designer</SubType>
-      </Page>
+        <Page Update="Theme\Dark.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="View\MainWindow.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="View\Theme\Control\Button.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="View\Theme\Control\CheckBox.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="View\Theme\Control\ComboBox.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="View\Theme\Control\ListBox.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="View\Theme\Control\ListView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="View\Theme\Control\ListViewItem.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="View\Theme\Control\RadioButton.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="View\Theme\Control\ScrollViewer.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="View\Theme\Control\TextBox.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="View\Theme\Dark.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="View\Resources\Theme\Control\Button.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="View\Resources\Theme\Control\CheckBox.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="View\Resources\Theme\Control\ComboBox.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="View\Resources\Theme\Control\ListBox.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="View\Resources\Theme\Control\ListView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="View\Resources\Theme\Control\ListViewItem.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="View\Resources\Theme\Control\RadioButton.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="View\Resources\Theme\Control\ScrollViewer.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="View\Resources\Theme\Control\TextBox.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="View\Resources\Theme\Dark.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+        <Page Update="View\Pages\MainPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="View\Pages\SettingsPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
     </ItemGroup>
 
     <ItemGroup>
-      <ApplicationDefinition Include="View\App.xaml">
-        <Generator>MSBuild:Compile</Generator>
-        <XamlRuntime>Wpf</XamlRuntime>
-        <SubType>Designer</SubType>
-      </ApplicationDefinition>
+        <ApplicationDefinition Include="View\App.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </ApplicationDefinition>
     </ItemGroup>
 
     <ItemGroup>
-      <Reference Include="PresentationFramework">
-        <HintPath>..\..\..\..\..\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\8.0.0\PresentationFramework.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Drawing.Common">
-        <HintPath>..\..\..\..\..\Program Files\JetBrains\JetBrains Rider 2024.1.1\lib\ReSharperHost\NetCore\System.Drawing.Common.dll</HintPath>
-      </Reference>
+        <Reference Include="PresentationFramework">
+            <HintPath>..\..\..\..\..\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\8.0.0\PresentationFramework.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Drawing.Common">
+            <HintPath>..\..\..\..\..\Program Files\JetBrains\JetBrains Rider 2024.1.1\lib\ReSharperHost\NetCore\System.Drawing.Common.dll</HintPath>
+        </Reference>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="WPF-UI" Version="3.0.4" />
+        <PackageReference Include="WPF-UI" Version="3.0.4"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="View\Resources\" />
+        <Folder Include="View\Resources\"/>
     </ItemGroup>
 
 </Project>

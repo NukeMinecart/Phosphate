@@ -3,7 +3,6 @@ using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using Size = System.Drawing.Size;
 
 namespace Phosphate.Converters;
 
@@ -17,7 +16,7 @@ public static class ImageConverter
                 icon.Handle,
                 Int32Rect.Empty,
                 BitmapSizeOptions.FromEmptyOptions());
-            
+
             return imageSource;
         }
 

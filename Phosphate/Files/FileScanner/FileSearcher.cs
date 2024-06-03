@@ -15,14 +15,13 @@ public static class FileSearcher
     {
         if ((startingDirectory.Attributes & FileAttributes.Directory) != FileAttributes.Directory)
             throw new FileFormatException("Invalid starting directory");
-        
-        var filePaths = Directory.EnumerateFiles(startingDirectory.FullName, "*."+fileExtension, new EnumerationOptions
-        {
-            IgnoreInaccessible = true,
-            RecurseSubdirectories = true,
 
-        }).Select(file => new FileInfo(file));
+        var filePaths = Directory.EnumerateFiles(startingDirectory.FullName, "*." + fileExtension,
+            new EnumerationOptions
+            {
+                IgnoreInaccessible = true,
+                RecurseSubdirectories = true
+            }).Select(file => new FileInfo(file));
         return filePaths;
     }
-
 }
