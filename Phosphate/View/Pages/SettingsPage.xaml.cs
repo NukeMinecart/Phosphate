@@ -33,7 +33,6 @@ public partial class SettingsPage : Page
 
     private void ChangeTheme(object source, SelectionChangedEventArgs args)
     {
-        //TODO do a queue implementation of file saving and searching and dont exit the program until queue is empty
         var selectedIndex = ((ComboBox)source).SelectedIndex;
         CacheObjects.SettingsCache.AddValue(ThemeIndex, selectedIndex);
         CacheLoader.AddSettingsToSaveQueue();
