@@ -11,9 +11,7 @@ public struct ExecutableItem(FileInfo exePath, string name, Size size)
     [JsonInclude] private string _exePath = exePath.FullName;
 
     [JsonInclude] public Size Size { get; private set; } = size;
-
-    [JsonIgnore] private Icon _icon = GetIcon(exePath, size);
-
+    
     public void Execute()
     {
         AppLauncher.LaunchExe(new FileInfo(_exePath));

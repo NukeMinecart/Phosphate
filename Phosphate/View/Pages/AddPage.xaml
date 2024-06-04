@@ -17,7 +17,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <ui:AutoSuggestBox Grid.Column="1" Grid.Row="1" x:Name="AutoSuggestBox" PlaceholderText="Search"
+        <ui:AutoSuggestBox Grid.Column="1" Grid.Row="1" x:Name="ExecutableSuggestBox" PlaceholderText="Search" QuerySubmitted="OnQuerySubmitted" SuggestionChosen="OnSuggestionChosen"
                            VerticalAlignment="Top">
             <ui:AutoSuggestBox.Icon>
                 <ui:IconSourceElement>

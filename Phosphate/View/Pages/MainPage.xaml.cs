@@ -18,7 +18,13 @@ public partial class MainPage : Page
             new ExecutableItem(
                 new FileInfo(@"C:\Users\bradl\OneDrive\Desktop\Stuff\mmc-stable-win32\MultiMC\MultiMC.exe"), "MultiMC",
                 new Size(100, 100));
+        
+        var exeItem1 =
+            new ExecutableItem(
+                new FileInfo(@"C:\XboxGames\Minecraft Launcher\Content\gamelaunchhelper.exe"), "Minecraft Launcher",
+                new Size(100, 100));
         AddLaunch(exeItem);
+        AddLaunch(exeItem1);
     }
 
     private void AddLaunch(ExecutableItem item)
