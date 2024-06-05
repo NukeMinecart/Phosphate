@@ -11,7 +11,7 @@ public partial class App : Application
 {
     protected override void OnExit(ExitEventArgs e)
     {
-        JsonLoader.IsFinished = true;
+        JsonLoader.EndWatcherThread();
         CacheLoader.SaveValuesFromCache();
         base.OnExit(e);
     }

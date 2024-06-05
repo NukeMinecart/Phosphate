@@ -14,6 +14,7 @@ public partial class MainPage : Page
     public MainPage()
     {
         InitializeComponent();
+        AppDomain.CurrentDomain.UnhandledException += (sender, args) => {Console.WriteLine(sender); Console.WriteLine(args.ExceptionObject); };
         var exeItem =
             new ExecutableItem(
                 new FileInfo(@"C:\Users\bradl\OneDrive\Desktop\Stuff\mmc-stable-win32\MultiMC\MultiMC.exe"), "MultiMC",

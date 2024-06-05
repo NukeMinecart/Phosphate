@@ -1,10 +1,14 @@
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media.Animation;
+using Microsoft.Win32;
 using Phosphate.Cache;
 using Phosphate.Files.FileScanner;
 using Phosphate.Launcher;
 using Phosphate.Launcher.Launch;
+using Wpf.Ui.Animations;
 using Wpf.Ui.Controls;
 using Size = System.Drawing.Size;
 
@@ -33,7 +37,7 @@ public partial class AddPage : Page
 
     private void AddExecutableItem(ExecutableItem item)
     {
-        
+        AddFieldGrid.Visibility = Visibility.Visible;
     }
 
     private void OnSuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
@@ -46,6 +50,24 @@ public partial class AddPage : Page
         if (File.Exists(args.QueryText) && AppLauncher.IsExecutableFile(new FileInfo(args.QueryText)))
         {
             AddExecutableItem(new ExecutableItem(new FileInfo(args.QueryText), "Name", new Size(100, 100)));
+        }
+    }
+
+    private void OnTextChange(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+    {
+        AddFieldGrid.Visibility = Visibility.Hidden;
+    }
+
+    private void OpenIconFile(object sender, RoutedEventArgs e)
+    {
+        var iconDialog = new OpenFileDialog
+        {
+            Multiselect = false,
+            Filter = "Image Files (*.ico, *.png, *.jpg)|*.ico;*.png;*.jpg;*.jpeg"
+        };
+        if (iconDialog.ShowDialog() == true)
+        {
+            IconFileBox.Text = iconDialog.FileName;
         }
     }
 }

@@ -13,7 +13,7 @@ public static class JsonLoader
     private static readonly Thread WatcherThread = new(WatchThreadPool);
     private static readonly HashSet<Task> TaskSet = [];
     private static readonly EventWaitHandle WatcherThreadWait = new(false, EventResetMode.ManualReset);
-    public static bool IsFinished { get; set; }
+    private static bool _isFinished;
 
     public static void Initialize()
     {
@@ -46,12 +46,19 @@ public static class JsonLoader
 
             if (TaskSet.Count == 0)
             {
-                if (IsFinished) Thread.CurrentThread.Interrupt();
+                if (_isFinished)
+                    break;
 
                 WatcherThreadWait.Reset();
                 WatcherThreadWait.WaitOne();
             }
         }
+    }
+
+    public static void EndWatcherThread()
+    {
+        _isFinished = true;
+        WatcherThreadWait.Set();
     }
 
     public static T LoadValuesFromJson<T>(FileInfo path)

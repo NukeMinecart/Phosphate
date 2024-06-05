@@ -6,24 +6,107 @@
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       mc:Ignorable="d"
       Title="AddPage">
-    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition MinWidth="8" MaxWidth="8" />
-            <ColumnDefinition />
-            <ColumnDefinition MinWidth="8" MaxWidth="8" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition MinHeight="8" MaxHeight="8" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-
-        <ui:AutoSuggestBox Grid.Column="1" Grid.Row="1" x:Name="ExecutableSuggestBox" PlaceholderText="Search" QuerySubmitted="OnQuerySubmitted" SuggestionChosen="OnSuggestionChosen"
-                           VerticalAlignment="Top">
-            <ui:AutoSuggestBox.Icon>
-                <ui:IconSourceElement>
-                    <ui:SymbolIconSource Symbol="Search24" />
-                </ui:IconSourceElement>
-            </ui:AutoSuggestBox.Icon>
-        </ui:AutoSuggestBox>
-    </Grid>
+    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="16, 16, 16, 0">
+            <ui:AutoSuggestBox x:Name="ExecutableSuggestBox" PlaceholderText="Search" 
+                               QuerySubmitted="OnQuerySubmitted" SuggestionChosen="OnSuggestionChosen" TextChanged="OnTextChange"
+                               VerticalAlignment="Top" Padding="32">
+                <ui:AutoSuggestBox.Icon>
+                    <ui:IconSourceElement>
+                        <ui:SymbolIconSource Symbol="Search24"/>
+                    </ui:IconSourceElement>
+                </ui:AutoSuggestBox.Icon>
+            </ui:AutoSuggestBox>
+            
+        <StackPanel Name="AddFieldGrid" Visibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0, 32, 0, 0">
+            <ui:TextBlock
+                Margin="0,8,0,8"
+                FontTypography="Subtitle"
+                Text="Title" 
+                Foreground="{ui:ThemeResource TextFillColorSecondaryBrush}"/>
+            
+            <ui:CardControl Padding="16" Icon="{ui:SymbolIcon Text32}">
+                <ui:CardControl.Header>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <ui:TextBlock
+                            Grid.Row="0"
+                            FontTypography="Body"
+                            Text="Launch item name" />
+                    </Grid>
+                </ui:CardControl.Header>    
+                <ui:TextBox MinWidth="200"/>
+            </ui:CardControl>
+            
+            <ui:TextBlock
+                Margin="0,8,0,8"
+                FontTypography="Subtitle"
+                Text="Size" 
+                Foreground="{ui:ThemeResource TextFillColorSecondaryBrush}"/>
+            
+            <ui:CardControl Padding="16" Icon="{ui:SymbolIcon ArrowAutofitHeightDotted20}">
+                <ui:CardControl.Header>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <ui:TextBlock
+                            Grid.Row="0"
+                            FontTypography="Body"
+                            Text="Icon height" />
+                    </Grid>
+                </ui:CardControl.Header>    
+                <ui:NumberBox MinWidth="200" MaxDecimalPlaces="0" Minimum="10" Maximum="200" />
+            </ui:CardControl>
+            
+            <ui:CardControl Padding="16" Icon="{ui:SymbolIcon ArrowAutofitWidthDotted20}">
+                <ui:CardControl.Header>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <ui:TextBlock
+                            Grid.Row="0"
+                            FontTypography="Body"
+                            Text="Icon width" />
+                    </Grid>
+                </ui:CardControl.Header> 
+                <ui:NumberBox MinWidth="200" MaxDecimalPlaces="0" Minimum="10" Maximum="200" />
+            </ui:CardControl>
+            
+            <ui:TextBlock
+                Margin="0,8,0,8"
+                FontTypography="Subtitle"
+                Text="Optional" 
+                Foreground="{ui:ThemeResource TextFillColorSecondaryBrush}"/>
+            
+            <ui:CardControl Padding="16" Icon="{ui:SymbolIcon Image24}">
+                <ui:CardControl.Header>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <ui:TextBlock
+                            Grid.Row="0"
+                            FontTypography="Body"
+                            Text="Replacement Icon" />
+                    </Grid>
+                </ui:CardControl.Header> 
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <ui:TextBox Name="IconFileBox" ClearButtonEnabled="True" MinWidth="200"/>
+                    <ui:Button Grid.Column="1" Icon="{ui:SymbolIcon FolderOpen20}" Click="OpenIconFile"
+                               Background="Transparent" HorizontalAlignment="Right"/>
+                </Grid>
+            </ui:CardControl>
+        </StackPanel>
+    </StackPanel>
 </Page>
