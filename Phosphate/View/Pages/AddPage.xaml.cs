@@ -4,9 +4,7 @@ using System.Windows.Controls;
 using Microsoft.Win32;
 using Phosphate.Cache;
 using Phosphate.Launcher;
-using Phosphate.Launcher.Launch;
 using Wpf.Ui.Controls;
-using Size = System.Drawing.Size;
 
 namespace Phosphate.View.Pages;
 
@@ -22,6 +20,10 @@ public partial class AddPage : Page
         else
             CacheObjects.ExecutableItemCache.PropertyChanged +=
                 (_, _) => Application.Current.Dispatcher.Invoke(AddSearchItems);
+        IconFileBox.TextChanged += (_, _) => RefreshPreview();
+        HeightNumberBox.ValueChanged += (_, _) => RefreshPreview();
+        WidthNumberBox.ValueChanged += (_, _) => RefreshPreview();
+        IconFileBox.TextChanged += (_, _) => RefreshPreview();
     }
 
 
@@ -52,5 +54,10 @@ public partial class AddPage : Page
         {
             IconFileBox.Text = iconDialog.FileName;
         }
+    }
+
+    private void RefreshPreview()
+    {
+        
     }
 }

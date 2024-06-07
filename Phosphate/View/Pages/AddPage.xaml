@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:resources="clr-namespace:Phosphate.View.Resources"
       mc:Ignorable="d"
       Title="AddPage">
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="16, 16, 16, 0">
@@ -36,7 +37,7 @@
                             Text="Launch item name" />
                     </Grid>
                 </ui:CardControl.Header>    
-                <ui:TextBox MinWidth="200"/>
+                <ui:TextBox Name="ItemNameField" MinWidth="200"/>
             </ui:CardControl>
             
             <ui:TextBlock
@@ -58,7 +59,7 @@
                             Text="Icon height" />
                     </Grid>
                 </ui:CardControl.Header>    
-                <ui:NumberBox MinWidth="200" MaxDecimalPlaces="0" Minimum="10" Maximum="200" Value="100"/>
+                <ui:NumberBox Name="HeightNumberBox" MinWidth="200" MaxDecimalPlaces="0" Minimum="10" Maximum="200" Value="100"/>
             </ui:CardControl>
             
             <ui:CardControl Padding="16" Icon="{ui:SymbolIcon ArrowAutofitWidthDotted20}">
@@ -74,7 +75,7 @@
                             Text="Icon width" />
                     </Grid>
                 </ui:CardControl.Header> 
-                <ui:NumberBox MinWidth="200" MaxDecimalPlaces="0" Minimum="10" Maximum="200" Value="100"/>
+                <ui:NumberBox Name="WidthNumberBox" MinWidth="200" MaxDecimalPlaces="0" Minimum="10" Maximum="200" Value="100"/>
             </ui:CardControl>
             
             <ui:TextBlock
