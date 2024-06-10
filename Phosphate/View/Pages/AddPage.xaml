@@ -107,6 +107,14 @@
                                Background="Transparent" HorizontalAlignment="Right"/>
                 </Grid>
             </ui:CardControl>
+            
+            <!-- todo Fix not displaying issue -->
+            <resources:ExecutableItemView
+                DisplayName="{Binding ElementName=ItemNameField, Path=Text, NotifyOnSourceUpdated=True}" 
+                IconHeight="{Binding ElementName=HeightNumberBox, Path=Value, NotifyOnSourceUpdated=True}" 
+                IconWidth="{Binding ElementName=WidthNumberBox, Path=Value, NotifyOnSourceUpdated=True}" 
+                ExePath="{Binding ElementName=ExecutableSuggestBox, Path=Text, NotifyOnSourceUpdated=True}" Visibility="Visible"/>
+            
         </StackPanel>
     </StackPanel>
 </Page>

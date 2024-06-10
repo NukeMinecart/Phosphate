@@ -24,9 +24,14 @@ public struct ExecutableItem(FileInfo exePath, string name, Size size, string? i
         return GetIcon(IconPath != null ? new FileInfo(IconPath) : new FileInfo(_exePath), Size);
     }
 
-    private static Icon GetIcon(FileInfo filePath, Size size)
+    public static Icon GetIcon(FileInfo filePath, Size size)
     {
         //TODO change to get any kind of image file
-        return Icon.ExtractAssociatedIcon(filePath.FullName) ?? new Icon(SystemIcons.WinLogo, size);
+        return GetIconUnsafe(filePath) ?? new Icon(SystemIcons.WinLogo, size);
+    }
+    
+    private static Icon? GetIconUnsafe(FileInfo filePath)
+    {
+        return Icon.ExtractAssociatedIcon(filePath.FullName);
     }
 }
