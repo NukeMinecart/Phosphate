@@ -12,6 +12,7 @@ public static class ImageConverter
     {
         if (icon != null)
         {
+            //Todo create one for every file type (.png, .jpg, etc)
             ImageSource imageSource = Imaging.CreateBitmapSourceFromHIcon(
                 icon.Handle,
                 Int32Rect.Empty,
