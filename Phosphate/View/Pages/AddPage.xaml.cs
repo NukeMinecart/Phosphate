@@ -35,7 +35,6 @@ public partial class AddPage : Page
     
     private void OnTextChange(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
     {
-        //TODO add preview frame to view before adding element
         if (File.Exists(args.Text) && AppLauncher.IsExecutableFile(new FileInfo(args.Text)))
             AddFieldGrid.Visibility = Visibility.Visible;
         else

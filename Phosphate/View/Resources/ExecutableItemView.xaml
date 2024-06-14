@@ -3,6 +3,9 @@
                     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
                     xmlns:resources="clr-namespace:Phosphate.View.Resources"
                     xmlns:converters="clr-namespace:Phosphate.Converters">
+    
+    <converters:PathToImageSourceConverter x:Key="PathConverter"/>
+    
     <Style TargetType="{x:Type resources:ExecutableItemView}">
         <Setter Property="Focusable" Value="False" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
@@ -10,13 +13,11 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type resources:ExecutableItemView}">
-                    <ControlTemplate.Resources>
-                        <converters:PathToImageSourceConverter x:Key="PathConverter"/>
-                    </ControlTemplate.Resources>
-                    
-                    <StackPanel Margin="8">
-                        <ui:Image Source="{TemplateBinding IconPath, Converter={StaticResource PathConverter}, ConverterParameter={TemplateBinding ExePath}}" />
-                        <Button Content="{TemplateBinding  DisplayName}"/>
+                    <StackPanel Margin="8" Orientation="Vertical">
+                        <!-- <ui:Image Source="{TemplateBinding IconPath, Converter={StaticResource PathConverter}, ConverterParameter={TemplateBinding ExePath}}"  -->
+                        <!--           Width="{TemplateBinding IconWidth}" Height="{TemplateBinding IconHeight}"/> -->
+                        <!-- <ui:TextBlock Text="{TemplateBinding  DisplayName}"/> -->
+                        <Button Width="100" Height="30" Content="Test" />
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>

@@ -5,11 +5,6 @@ namespace Phosphate.View.Resources;
 
 public class ExecutableItemView : Control
 {
-    public ExecutableItemView()
-    {
-        DataContext = this;
-    }
-
     public static readonly DependencyProperty DisplayNameProperty = DependencyProperty.Register(
         nameof(DisplayName),
         typeof(string),
