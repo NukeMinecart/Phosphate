@@ -7,7 +7,6 @@ public static class FileSearcher
 {
     public static IEnumerable<FileInfo> SearchForExe(FileInfo startingDirectory)
     {
-        // Find all .exe files on the hard drive
         return SearchForFiles(startingDirectory, "exe").Where(AppLauncher.IsExecutableFile);
     }
 

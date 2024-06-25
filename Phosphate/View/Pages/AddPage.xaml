@@ -108,14 +108,13 @@
                 </Grid>
             </ui:CardControl>
             
-            <!-- Todo space is reserved but no content is rendered -->
             <resources:ExecutableItemView
                 DisplayName="{Binding ElementName=ItemNameField, Path=Text, NotifyOnSourceUpdated=True, Mode=OneWay}"
                 IconHeight="{Binding ElementName=HeightNumberBox, Path=Value, NotifyOnSourceUpdated=True, Mode=OneWay}"
                 IconWidth="{Binding ElementName=WidthNumberBox, Path=Value, NotifyOnSourceUpdated=True, Mode=OneWay}"
-                ExePath="{Binding ElementName=ExecutableSuggestBox, Path=Text, NotifyOnSourceUpdated=True, Mode=OneWay}" Visibility="Visible"
-                HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinWidth="300" MinHeight="200"
-                />
+                ExePath="{Binding ElementName=ExecutableSuggestBox, Path=Text, NotifyOnSourceUpdated=True, Mode=OneWay}"
+                Width="300" Height="200"/>
+            <Button />
         </StackPanel>
     </StackPanel>
 </Page>
