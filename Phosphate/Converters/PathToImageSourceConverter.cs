@@ -6,13 +6,12 @@ using Size = System.Drawing.Size;
 
 namespace Phosphate.Converters;
 
-public class PathToImageSourceConverter : IValueConverter
+public class PathToImageSourceConverter : IMultiValueConverter
 {
-    public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+    public object? Convert(object[] value, Type targetType, object? parameter, CultureInfo culture)
     {
-        //todo templated bindings do not directly convert to strings
-        var iconPath = (string)value!;
-        var path = (string)parameter!;
+        var iconPath = (string)value[0];
+        var path = (string)value[1];
         
         if (string.IsNullOrWhiteSpace(path) && string.IsNullOrWhiteSpace(iconPath)) return null;
 
@@ -21,7 +20,7 @@ public class PathToImageSourceConverter : IValueConverter
             ExecutableItem.GetIcon(new FileInfo(path), new Size(100, 100)));
     }
 
-    public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
+    public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
     {
         throw new NotImplementedException();
     }
