@@ -19,15 +19,15 @@ public class ExecutableItemView : Control
         new PropertyMetadata(null)
     ); 
     
-    public static readonly DependencyProperty IconWidthProperty = DependencyProperty.Register(
-        nameof(IconWidth),
+    public static readonly DependencyProperty ControlWidthProperty = DependencyProperty.Register(
+        nameof(ControlWidth),
         typeof(int),
         typeof(ExecutableItemView),
         new PropertyMetadata(null)
     );
     
-    public static readonly DependencyProperty IconHeightProperty = DependencyProperty.Register(
-        nameof(IconHeight),
+    public static readonly DependencyProperty ControlHeightProperty = DependencyProperty.Register(
+        nameof(ControlHeight),
         typeof(int),
         typeof(ExecutableItemView),
         new PropertyMetadata(null)
@@ -52,15 +52,15 @@ public class ExecutableItemView : Control
         set => SetValue(ExePathProperty, value);
     }
     
-    public int IconWidth
+    public int ControlWidth
     {
-        get => (int)GetValue(IconWidthProperty);
-        set => SetValue(IconWidthProperty, value);
+        get => (int)GetValue(ControlWidthProperty);
+        set => SetValue(ControlWidthProperty, value);
     }
-    public int IconHeight
+    public int ControlHeight
     {
-        get => (int)GetValue(IconHeightProperty);
-        set => SetValue(IconHeightProperty, value);
+        get => (int)GetValue(ControlHeightProperty);
+        set => SetValue(ControlHeightProperty, value);
     }
     
     public string? IconPath

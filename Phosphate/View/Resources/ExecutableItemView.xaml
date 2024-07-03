@@ -13,8 +13,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type resources:ExecutableItemView}">
-                    <StackPanel Margin="8" Orientation="Vertical">
-                        <ui:Image Width="{TemplateBinding IconWidth}" Height="{TemplateBinding IconHeight}">
+                    <StackPanel Margin="8" Orientation="Vertical" MaxWidth="{TemplateBinding ControlWidth}" MaxHeight="{TemplateBinding ControlHeight}">
+                        <ui:Image >
                             <ui:Image.Source>
                                 <MultiBinding Converter="{StaticResource PathConverter}">
                                     <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IconPath"/>
@@ -23,7 +23,7 @@
                             </ui:Image.Source>
                         </ui:Image>
                         
-                        <ui:TextBlock Text="{TemplateBinding  DisplayName}"/>
+                        <ui:TextBlock Text="{TemplateBinding  DisplayName}" FontSize="28"/>
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>

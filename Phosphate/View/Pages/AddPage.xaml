@@ -57,7 +57,7 @@
                         <ui:TextBlock
                             Grid.Row="0"
                             FontTypography="Body"
-                            Text="Icon height" />
+                            Text="Height" />
                     </Grid>
                 </ui:CardControl.Header>    
                 <ui:NumberBox Name="HeightNumberBox" MinWidth="200" MaxDecimalPlaces="0" Minimum="10" Maximum="200" Value="100"/>
@@ -73,7 +73,7 @@
                         <ui:TextBlock
                             Grid.Row="0"
                             FontTypography="Body"
-                            Text="Icon width" />
+                            Text="Width" />
                     </Grid>
                 </ui:CardControl.Header> 
                 <ui:NumberBox Name="WidthNumberBox" MinWidth="200" MaxDecimalPlaces="0" Minimum="10" Maximum="200" Value="100"/>
@@ -108,14 +108,15 @@
                                Background="Transparent" HorizontalAlignment="Right"/>
                 </Grid>
             </ui:CardControl>
+            <!-- todo fix scaling issue -->
             
             <resources:ExecutableItemView
-                DisplayName="{Binding ElementName=ItemNameField, Path=Text, Mode=OneWay}"
-                ExePath="{Binding ElementName=ExecutableSuggestBox, Path=Text, Mode=OneWay}"
+                DisplayName="{Binding ElementName=ItemNameField, Path=Text}"
+                ExePath="{Binding ElementName=ExecutableSuggestBox, Path=Text}"
 
-                IconHeight="{Binding ElementName=HeightNumberBox, Path=Value, Mode=OneWay}"
-                IconWidth="{Binding ElementName=WidthNumberBox, Path=Value, Mode=OneWay}"
-                IconPath="{Binding ElementName=IconFileBox, Path=Text, Mode=OneWay}" />
+                ControlHeight="{Binding ElementName=HeightNumberBox, Path=Value}"
+                ControlWidth="{Binding ElementName=WidthNumberBox, Path=Value}"
+                IconPath="{Binding ElementName=IconFileBox, Path=Text}" />
         </StackPanel>
     </StackPanel>
 </Page>
